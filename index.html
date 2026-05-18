@@ -213,6 +213,12 @@ header {
   display: block;
   object-fit: contain;
 }
+/* 정사각형 캔버스 안에 작게 들어간 로고 보정 */
+.logo-track img[src$="sellerlog.png"],
+.logo-track img[src$="elitejob.png"] {
+  transform: scale(1.5);
+  transform-origin: center;
+}
 @keyframes logo-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
