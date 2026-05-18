@@ -1040,9 +1040,164 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .fab-afterparty { animation: none; }
 }
+
+/* ── PASSWORD GATE ───────────────────── */
+.pw-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 32px;
+  text-align: center;
+}
+.pw-gate.hidden { display: none; }
+.pw-gate-title {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.pw-gate-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+.pw-gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(360px, 90vw);
+}
+.pw-gate-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  text-align: center;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.pw-gate-input:focus { border-bottom-color: #fff; }
+.pw-gate-submit {
+  background: #fff;
+  color: var(--ink);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.pw-gate-submit:hover { transform: translateY(-2px); }
+.pw-gate-submit:disabled { opacity: 0.4; cursor: wait; }
+.pw-gate-error {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #ff8a8a;
+  letter-spacing: 0.08em;
+  min-height: 16px;
+}
+.pw-gate.shake .pw-gate-form { animation: pw-shake 0.4s ease; }
+@keyframes pw-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
 </style>
+<script>
+  // Hide content until auth check completes (prevents flash)
+  if (sessionStorage.getItem('snusv30_auth') !== '1') {
+    document.documentElement.style.visibility = 'hidden';
+  }
+</script>
 </head>
 <body>
+
+<div class="pw-gate" id="pw-gate">
+  <p class="pw-gate-sub">SNUSV 30TH — HOMECOMING</p>
+  <h1 class="pw-gate-title">초대 코드를 입력해 주세요</h1>
+  <form class="pw-gate-form" id="pw-gate-form" autocomplete="off">
+    <input type="password" inputmode="numeric" autocomplete="off"
+           class="pw-gate-input" id="pw-gate-input"
+           placeholder="••••••" maxlength="20" aria-label="초대 코드" />
+    <button type="submit" class="pw-gate-submit">입장</button>
+    <div class="pw-gate-error" id="pw-gate-error"></div>
+  </form>
+</div>
+
+<script>
+(function() {
+  const TARGET = '2f9193ef7c0b2b04be91a69ed9a37d8eaf6bfebaa88b12d0147732384c3216c1';
+  const KEY = 'snusv30_auth';
+  const gate = document.getElementById('pw-gate');
+  const form = document.getElementById('pw-gate-form');
+  const input = document.getElementById('pw-gate-input');
+  const err = document.getElementById('pw-gate-error');
+
+  function unlock() {
+    sessionStorage.setItem(KEY, '1');
+    gate.classList.add('hidden');
+    document.documentElement.style.visibility = '';
+  }
+
+  async function sha256(s) {
+    const buf = new TextEncoder().encode(s);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  if (sessionStorage.getItem(KEY) === '1') {
+    unlock();
+  } else {
+    document.documentElement.style.visibility = '';
+    gate.style.visibility = 'visible';
+    setTimeout(() => input.focus(), 50);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const val = input.value.trim();
+    if (!val) return;
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    err.textContent = '';
+    try {
+      const h = await sha256(val);
+      if (h === TARGET) {
+        unlock();
+      } else {
+        gate.classList.add('shake');
+        err.textContent = '코드가 일치하지 않습니다';
+        input.value = '';
+        input.focus();
+        setTimeout(() => gate.classList.remove('shake'), 500);
+      }
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
 
 <header>
   <div class="header-inner">
