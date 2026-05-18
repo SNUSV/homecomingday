@@ -124,6 +124,76 @@ header {
 }
 .venue-map-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
+.modal-reco-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.modal-reco-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  text-align: left;
+  font: inherit;
+}
+.modal-reco-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 28, 196, 0.12);
+}
+.modal-reco-head { display: flex; align-items: center; gap: 8px; }
+.modal-reco-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.modal-reco-cohort {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.modal-reco-company {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.modal-reco-reason {
+  margin-top: 6px;
+  display: inline-flex;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--blue);
+  background: rgba(10, 28, 196, 0.07);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.modal-reco-empty {
+  padding: 18px 20px;
+  background: rgba(10, 28, 196, 0.04);
+  border: 1px dashed rgba(10, 28, 196, 0.25);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.55;
+}
+
 .modal-share {
   display: inline-flex;
   align-items: center;
@@ -1463,7 +1533,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "pispherelab.com",
     "domain": "pispherelab.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1479,7 +1571,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/feed/",
     "homepage": "https://d3jubilee.com/",
     "domain": "d3jubilee.com",
-    "cohort": "23"
+    "cohort": "23",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크·하드웨어 · AI/머신러닝"
+      },
+      {
+        "name": "김지섭",
+        "company": "Hashed",
+        "reason": "AI/머신러닝 · VC/투자업"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "딥테크·하드웨어 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1491,7 +1605,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jungeuijin/",
     "homepage": "https://netropy.ai/",
     "domain": "netropy.ai",
-    "cohort": "14"
+    "cohort": "14",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1507,7 +1643,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/heesujeong/",
     "homepage": "https://www.kinni.ai",
     "domain": "kinni.ai",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1525,7 +1683,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/doyeop-daniel-kim/",
     "homepage": "https://www.hitchhiker-ai.com/ko?utm_source=direct&utm_medium=none",
     "domain": "hitchhiker-ai.com",
-    "cohort": "23"
+    "cohort": "23",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "장원준",
+        "company": "스타트업",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1546,7 +1726,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/yeeun-lee-32471b222/",
     "homepage": "https://www.ocho.team/",
     "domain": "ocho.team",
-    "cohort": "25"
+    "cohort": "25",
+    "recommendations": [
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · AI/머신러닝"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · AI/머신러닝"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "정혜령",
+        "company": "서울스킨로그",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1567,7 +1769,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jongwon-park-wonit/",
     "homepage": "https://sellerlog.net/",
     "domain": "sellerlog.net",
-    "cohort": "24"
+    "cohort": "24",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · AI/머신러닝"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "강민영",
@@ -1579,7 +1803,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/minyoungkang/",
     "homepage": "",
     "domain": null,
-    "cohort": "16"
+    "cohort": "16",
+    "recommendations": [
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      },
+      {
+        "name": "지우석",
+        "company": "Sendbird",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "허준혁",
@@ -1591,7 +1837,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/junhyeokheo",
     "homepage": "elitejob.co.kr",
     "domain": "elitejob.co.kr",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "초기 창업 · HR/채용"
+      },
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "초기 창업 · HR/채용"
+      },
+      {
+        "name": "정재훈",
+        "company": "숨고",
+        "reason": "초기 창업 · HR/채용"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · HR/채용"
+      }
+    ]
   },
   {
     "name": "석윤찬",
@@ -1602,7 +1870,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/charles-yunchan-suk-a9b9a78a/",
     "homepage": "www.visual.camp",
     "domain": "visual.camp",
-    "cohort": "1"
+    "cohort": "1",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1615,7 +1905,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/shawn-um-501772277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     "homepage": "https://revita.ag/en",
     "domain": "revita.ag",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "이정현",
+        "company": "한화에어로스페이스",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1631,7 +1943,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jaewoong-yoon",
     "homepage": "https://solomontax.ai/",
     "domain": "solomontax.ai",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "이학",
+        "company": "프리랜서",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1645,7 +1979,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/youngilcho",
     "homepage": "https://www.intakefoods.kr",
     "domain": "intakefoods.kr",
-    "cohort": "12"
+    "cohort": "12",
+    "recommendations": [
+      {
+        "name": "박혜림",
+        "company": "서울대",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "정혜령",
+        "company": "서울스킨로그",
+        "reason": "초기 창업 · 푸드/헬스"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1659,7 +2015,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/woonseong-lee-9b2830184/",
     "homepage": "https://sweetbalance.kr/",
     "domain": "sweetbalance.kr",
-    "cohort": "18"
+    "cohort": "18",
+    "recommendations": [
+      {
+        "name": "유동선",
+        "company": "서울대 국제농업기술대학원",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "초기 창업 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "백제영",
@@ -1675,7 +2053,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/je-young-baik-a502b323a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "현대차증권",
     "domain": "hmsec.com",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "모빌리티/공간 · 딥테크/하드웨어"
+      },
+      {
+        "name": "김남예",
+        "company": "숙박업",
+        "reason": "모빌리티/공간 · 딥테크/하드웨어"
+      },
+      {
+        "name": "문건기",
+        "company": "해치랩스",
+        "reason": "딥테크/하드웨어 · 금융·투자"
+      },
+      {
+        "name": "박언요",
+        "company": "브룩필드자산운용",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      }
+    ]
   },
   {
     "name": "구본영",
@@ -1687,7 +2087,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "everybike.io",
     "domain": "everybike.io",
-    "cohort": "16"
+    "cohort": "16",
+    "recommendations": [
+      {
+        "name": "조민희",
+        "company": "알리콘",
+        "reason": "초기 창업 · 모빌리티/공간"
+      },
+      {
+        "name": "김한준",
+        "company": "경동재 (한옥체험업)",
+        "reason": "초기 창업 · 모빌리티/공간"
+      },
+      {
+        "name": "지종현",
+        "company": "서울대 (석사)",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      },
+      {
+        "name": "최형욱",
+        "company": "서울대 (박사과정)",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "지우석",
@@ -1699,7 +2121,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/woosukji",
     "homepage": "https://sendbird.com",
     "domain": "sendbird.com",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1712,7 +2156,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jaecheon-ko/",
     "homepage": "https://cococlinic.kr/",
     "domain": "cococlinic.kr",
-    "cohort": "24"
+    "cohort": "24",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "디자인 · 푸드/헬스"
+      },
+      {
+        "name": "함승우",
+        "company": "Galux",
+        "reason": "디자인 · 푸드/헬스"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "콘텐츠·크리에이터 · 푸드/헬스"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "콘텐츠·크리에이터"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1731,7 +2197,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/seanseunghunlee/",
     "homepage": "www.proteamip.com",
     "domain": "proteamip.com",
-    "cohort": "2"
+    "cohort": "2",
+    "recommendations": [
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "법률·컨설팅 · 교육/에듀테크"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "초기 창업 · 교육·에듀테크"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "장건혁",
+        "company": "서울넘버풀",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "한태구",
@@ -1743,7 +2231,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/taegu-han-795278230?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "omniqon.com",
     "domain": "omniqon.com",
-    "cohort": "21"
+    "cohort": "21",
+    "recommendations": [
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "박병호",
+        "company": "말미잘",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1761,7 +2271,29 @@ const MEMBERS = [
     "linkedin": "현재운영하지않음",
     "homepage": "ulift.inc",
     "domain": "ulift.inc",
-    "cohort": "2"
+    "cohort": "2",
+    "recommendations": [
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "AI/머신러닝 · 법률·컨설팅"
+      },
+      {
+        "name": "김태훈",
+        "company": "Uniroad",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · VC/투자"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1779,7 +2311,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/doyeop-daniel-kim?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "Https://www.hitchhiker-ai.com",
     "domain": "hitchhiker-ai.com",
-    "cohort": "23"
+    "cohort": "23",
+    "recommendations": [
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "송준혁",
+        "company": "Anymorph",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "이동녘",
+        "company": "Moody",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "하재영",
@@ -1790,7 +2344,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "http://unban.ai",
     "domain": "unban.ai",
-    "cohort": "10"
+    "cohort": "10",
+    "recommendations": [
+      {
+        "name": "강민영",
+        "company": "미국 IT 회사",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "노태규",
+        "company": "현대해상",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "대기업/엔터프라이즈"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1807,7 +2383,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.ga21c.seoul.kr/",
     "domain": "ga21c.seoul.kr",
-    "cohort": "14"
+    "cohort": "14",
+    "recommendations": [
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "이운성",
+        "company": "Sweet Balance",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "고재천",
+        "company": "코코의원",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "함승우",
+        "company": "Galux",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "조민희",
@@ -1822,7 +2420,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/ingray/",
     "homepage": "https://www.alicorn-space.ai/",
     "domain": "alicorn-space.ai",
-    "cohort": "6"
+    "cohort": "6",
+    "recommendations": [
+      {
+        "name": "김한준",
+        "company": "경동재 (한옥체험업)",
+        "reason": "모빌리티/공간 · AI/머신러닝"
+      },
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "초기 창업 · 모빌리티/공간"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1841,7 +2461,29 @@ const MEMBERS = [
     "linkedin": "hskalena.github.io",
     "homepage": "bi.snu.ac.kr",
     "domain": "bi.snu.ac.kr",
-    "cohort": "21"
+    "cohort": "21",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "딥테크·하드웨어 · AI/머신러닝"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "AI/머신러닝 · 교육/에듀테크"
+      },
+      {
+        "name": "지종현",
+        "company": "서울대 (석사)",
+        "reason": "연구/대학원 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1859,7 +2501,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/seungwooham",
     "homepage": "https://galux.co.kr/ko/",
     "domain": "galux.co.kr",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "푸드/헬스 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      },
+      {
+        "name": "고재천",
+        "company": "코코의원",
+        "reason": "디자인 · 푸드/헬스"
+      },
+      {
+        "name": "정혜령",
+        "company": "서울스킨로그",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "박인택",
@@ -1871,7 +2535,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/intaekpark/",
     "homepage": "https://snipit.im/",
     "domain": "snipit.im",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "마케팅/브랜딩 · GTM·세일즈"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "마케팅/브랜딩 · GTM·세일즈"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      },
+      {
+        "name": "장건혁",
+        "company": "서울넘버풀",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -1888,7 +2574,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/i-am-haklee/",
     "homepage": "",
     "domain": null,
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "조한용",
+        "company": "스캐터랩 (제타)",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "허준석",
@@ -1900,7 +2608,29 @@ const MEMBERS = [
     "linkedin": "따로 없습니다.",
     "homepage": "https://collec.ai",
     "domain": "collec.ai",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "초기 창업 · 디자인"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "초기 창업 · 디자인"
+      },
+      {
+        "name": "조수민",
+        "company": "토스",
+        "reason": "디자인"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · SaaS/생산성"
+      }
+    ]
   },
   {
     "name": "이윤석",
@@ -1912,7 +2642,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/oscar-ys-lee",
     "homepage": "https://mogakgong.kr",
     "domain": "mogakgong.kr",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · 마케팅·브랜딩"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "정우철",
@@ -1928,7 +2680,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/dlkorea",
     "homepage": "https://okpos.co.kr",
     "domain": "okpos.co.kr",
-    "cohort": "15"
+    "cohort": "15",
+    "recommendations": [
+      {
+        "name": "이학",
+        "company": "프리랜서",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "조한용",
+        "company": "스캐터랩 (제타)",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "김서영",
@@ -1939,7 +2713,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/kinnwestzero",
     "homepage": "https://bearball.app",
     "domain": "bearball.app",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "이종민",
+        "company": "Lumilearn",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "초기 창업 · 교육/에듀테크"
+      }
+    ]
   },
   {
     "name": "신재우",
@@ -1950,7 +2746,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jaewoo-shin-03971423b?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "https://www.warmheartstranger.com, https://www.carry-world.com",
     "domain": "warmheartstranger.com",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "초기 창업 · 커머스/유통"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 커머스/유통"
+      },
+      {
+        "name": "유호연",
+        "company": "Taming Lab",
+        "reason": "초기 창업 · 커머스/유통"
+      },
+      {
+        "name": "정인기",
+        "company": "헬스케어컴퍼니 (532diet)",
+        "reason": "초기 창업 · 커머스/유통"
+      }
+    ]
   },
   {
     "name": "김인호",
@@ -1966,7 +2784,29 @@ const MEMBERS = [
     "linkedin": "linkedin.com/in/인호-김-a99081207",
     "homepage": "https://looxent.com/",
     "domain": "looxent.com",
-    "cohort": "26"
+    "cohort": "26",
+    "recommendations": [
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "AI/머신러닝 · 법률·컨설팅"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "VC/투자 · AI/머신러닝"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      },
+      {
+        "name": "지종현",
+        "company": "서울대 (석사)",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "유태규",
@@ -1978,7 +2818,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "www.supercat.co.kr",
     "domain": "supercat.co.kr",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "게임/콘텐츠 · AI/머신러닝"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "게임/콘텐츠 · AI/머신러닝"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "게임/콘텐츠 · AI/머신러닝"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "게임/콘텐츠 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "한채영",
@@ -1994,7 +2856,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/chaeyoung-han-44bbb52ab/",
     "homepage": "https://www.imhuve.com/",
     "domain": "imhuve.com",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "푸드/헬스 · AI/머신러닝"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "푸드/헬스 · AI/머신러닝"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -2007,7 +2891,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/daniyyel",
     "homepage": "elitejob.co.kr",
     "domain": "elitejob.co.kr",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · HR/채용"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "초기 창업 · HR/채용"
+      }
+    ]
   },
   {
     "name": "장건혁",
@@ -2023,7 +2929,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/janggunhyuk",
     "homepage": "https://www.seoulnumberfull.com/",
     "domain": "seoulnumberfull.com",
-    "cohort": "15"
+    "cohort": "15",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "개발/엔지니어링 · 개발·엔지니어링"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발/엔지니어링 · 개발·엔지니어링"
+      }
+    ]
   },
   {
     "name": "한수현",
@@ -2039,7 +2967,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/soohyeonhan/",
     "homepage": "https://www.freewheelin.io/ko/home",
     "domain": "freewheelin.io",
-    "cohort": "16"
+    "cohort": "16",
+    "recommendations": [
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "금융·투자 · 푸드/헬스"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "금융·투자 · 푸드/헬스"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "교육·에듀테크 · 교육/에듀테크"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "금융·투자 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "박시현",
@@ -2055,7 +3005,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/shihyun-park/",
     "homepage": "https://www.abovetech.io/",
     "domain": "abovetech.io",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "name": "오현경",
@@ -2070,7 +3042,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/sophia-bizdev?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "http://gsb.snu.ac.kr/",
     "domain": "gsb.snu.ac.kr",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "이운성",
+        "company": "Sweet Balance",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "한수현",
+        "company": "Freewheelin",
+        "reason": "금융·투자 · 푸드/헬스"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "위재영",
@@ -2081,7 +3075,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jaeyoung-wee-344554319?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "",
     "domain": null,
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "박민준",
+        "company": "—",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "이채은",
+        "company": "서울대 (의류학·경영학)",
+        "reason": "초기 창업 · 예비창업/학생"
+      }
+    ]
   },
   {
     "name": "현윤경",
@@ -2092,7 +3108,29 @@ const MEMBERS = [
     "linkedin": "https://shorturl.at/vKc7d",
     "homepage": "",
     "domain": null,
-    "cohort": "28"
+    "cohort": "28",
+    "recommendations": [
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "박민준",
+        "company": "—",
+        "reason": "초기 창업 · 예비창업/학생"
+      }
+    ]
   },
   {
     "name": "김지혜",
@@ -2111,7 +3149,29 @@ const MEMBERS = [
     "linkedin": "https://www.notion.so/2ec4b6ed1fcb80a988b9cbc92a8d992d?source=copy_link",
     "homepage": "",
     "domain": null,
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "정인기",
+        "company": "헬스케어컴퍼니 (532diet)",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "콘텐츠·크리에이터 · 커머스·유통"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "손원준",
@@ -2122,7 +3182,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "박상구",
@@ -2141,7 +3203,29 @@ const MEMBERS = [
     "linkedin": "없습니다.",
     "homepage": "https://www.cbre.com/",
     "domain": "cbre.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "백제영",
+        "company": "현대차증권",
+        "reason": "모빌리티/공간 · 딥테크/하드웨어"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "금융·투자 · 마케팅/브랜딩"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      },
+      {
+        "name": "유동선",
+        "company": "서울대 국제농업기술대학원",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      }
+    ]
   },
   {
     "name": "김주환",
@@ -2152,7 +3236,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/kim-joohwan-823865231/",
     "homepage": "",
     "domain": null,
-    "cohort": "16"
+    "cohort": "16",
+    "recommendations": [
+      {
+        "name": "장원준",
+        "company": "스타트업",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "류승준",
+        "company": "Feedvite",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "김한",
+        "company": "샤미팅",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "조건희",
+        "company": "Meetup",
+        "reason": "초기 창업 · 이외"
+      }
+    ]
   },
   {
     "name": "장원준",
@@ -2168,7 +3274,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "김남예",
@@ -2183,7 +3311,29 @@ const MEMBERS = [
     "linkedin": "https://kr.linkedin.com/in/%EB%82%A8%EC%98%88-%EA%B9%80-a84015261",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "모빌리티/공간 · 딥테크/하드웨어"
+      },
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "초기 창업 · 모빌리티/공간"
+      },
+      {
+        "name": "조민희",
+        "company": "알리콘",
+        "reason": "초기 창업 · 모빌리티/공간"
+      },
+      {
+        "name": "김한준",
+        "company": "경동재 (한옥체험업)",
+        "reason": "초기 창업 · 모빌리티/공간"
+      }
+    ]
   },
   {
     "name": "김형준",
@@ -2200,7 +3350,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/hyungjune-kim",
     "homepage": "https://kinni.ai",
     "domain": "kinni.ai",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · 금융·투자"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이세준",
@@ -2211,7 +3383,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "이운성",
+        "company": "Sweet Balance",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "김태엽",
+        "company": "AIRFITME",
+        "reason": "초기 창업 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "우지윤",
@@ -2222,7 +3416,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "박상준",
@@ -2238,7 +3434,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/promediony",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "김태훈",
+        "company": "Uniroad",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "송준혁",
@@ -2254,7 +3472,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/aaronxong/",
     "homepage": "https://anymorph.ai",
     "domain": "anymorph.ai",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "이동녘",
+        "company": "Moody",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "박정원",
@@ -2266,7 +3506,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jungwon-park-09386a165?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "https://strategycba.snu.ac.kr/",
     "domain": "strategycba.snu.ac.kr",
-    "cohort": "26"
+    "cohort": "26",
+    "recommendations": [
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "초기 창업 · 연구/대학원"
+      },
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "초기 창업"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업"
+      }
+    ]
   },
   {
     "name": "김수민",
@@ -2282,7 +3544,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/sumin-kim-138727288/",
     "homepage": "https://www.boltlab.co.kr/",
     "domain": "boltlab.co.kr",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "SaaS/생산성 · 에이전시·자동화"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "SaaS/생산성 · 에이전시·자동화"
+      },
+      {
+        "name": "김태엽",
+        "company": "AIRFITME",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      }
+    ]
   },
   {
     "name": "양재혁",
@@ -2299,7 +3583,29 @@ const MEMBERS = [
     "linkedin": "https://m.blog.naver.com/cjuz89",
     "homepage": "https://alphacut.video/",
     "domain": "alphacut.video",
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "남궁준",
@@ -2311,7 +3617,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/junenahmgoong?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "https://www.worldquant.com/",
     "domain": "worldquant.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "문건기",
+        "company": "해치랩스",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "금융·투자 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "박병현",
@@ -2326,7 +3654,29 @@ const MEMBERS = [
     "linkedin": "https://broad-peony-5bb.notion.site/00269fd691b04eae8c608fbef4810cd0?pvs=74",
     "homepage": "inkreat.com",
     "domain": "inkreat.com",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · 개발·엔지니어링"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "콘텐츠·크리에이터 · 개발·엔지니어링"
+      },
+      {
+        "name": "송병근",
+        "company": "—",
+        "reason": "콘텐츠·크리에이터 · 개발·엔지니어링"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      }
+    ]
   },
   {
     "name": "김태엽",
@@ -2342,7 +3692,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/taeyeup-kim-568433126",
     "homepage": "www.airfit.me",
     "domain": "airfit.me",
-    "cohort": "1"
+    "cohort": "1",
+    "recommendations": [
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이동녘",
@@ -2358,7 +3730,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/dongnyuk-lee-971699149?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "https://moody.team",
     "domain": "moody.team",
-    "cohort": "13"
+    "cohort": "13",
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "임상원",
+        "company": "인블로그 (Neopress)",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "김인범",
@@ -2373,7 +3767,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/inbeom-kim-345675253?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "https://www.tossbank.com/",
     "domain": "tossbank.com",
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "윤재웅",
+        "company": "Solomon Tax",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "장제인",
+        "company": "KODA (한국디지털에셋)",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      }
+    ]
   },
   {
     "name": "정재훈",
@@ -2385,7 +3801,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/justinjjh",
     "homepage": "https://www.soomgo.com/profile/users/3379598",
     "domain": "soomgo.com",
-    "cohort": "16"
+    "cohort": "16",
+    "recommendations": [
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "name": "박연경",
@@ -2401,7 +3839,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/yeong00park",
     "homepage": "https://www.samsung.com/sec/about-us/company-info/",
     "domain": "samsung.com",
-    "cohort": "31"
+    "cohort": "31",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "대기업/엔터프라이즈 · 마케팅/브랜딩"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      },
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -2423,7 +3883,29 @@ const MEMBERS = [
     "linkedin": "ocho.team",
     "homepage": "ocho.team",
     "domain": "ocho.team",
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "AI/머신러닝 · 디자인/콘텐츠"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "AI/머신러닝 · 마케팅/브랜딩"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 마케팅/브랜딩"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "AI/머신러닝 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "name": "이명준",
@@ -2434,7 +3916,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/mj-lee-27b073240/",
     "homepage": "https://www.youtube.com/@%EC%BD%94%EB%84%88korner",
     "domain": "youtube.com",
-    "cohort": "28"
+    "cohort": "28",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "박병현",
+        "company": "Inkreat",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      }
+    ]
   },
   {
     "name": "홍창현",
@@ -2445,7 +3949,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/%EC%B0%BD%ED%98%84-%ED%99%8D-63b648260/",
     "homepage": "https://www.rlwrld.ai/",
     "domain": "rlwrld.ai",
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "정의진",
+        "company": "Netropy",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "박민준",
@@ -2462,7 +3988,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/mjp-builder",
     "homepage": "",
     "domain": null,
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "장건혁",
+        "company": "서울넘버풀",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "류승준",
@@ -2474,7 +4022,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/seungjoon-ryu-0101691aa?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "feedvite.com",
     "domain": "feedvite.com",
-    "cohort": "25"
+    "cohort": "25",
+    "recommendations": [
+      {
+        "name": "조건희",
+        "company": "Meetup",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · 글로벌 진출"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · 글로벌 진출"
+      },
+      {
+        "name": "강민영",
+        "company": "미국 IT 회사",
+        "reason": "글로벌 진출"
+      }
+    ]
   },
   {
     "name": "노태규",
@@ -2486,7 +4056,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "29"
+    "cohort": "29",
+    "recommendations": [
+      {
+        "name": "강민영",
+        "company": "미국 IT 회사",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "하재영",
+        "company": "CJ대한통운",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "대기업/엔터프라이즈"
+      }
+    ]
   },
   {
     "name": "성보라",
@@ -2498,7 +4090,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "21"
+    "cohort": "21",
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "임상원",
+        "company": "인블로그 (Neopress)",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이종민",
@@ -2510,7 +4124,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/jongmin-lee-7858b638b",
     "homepage": "https://lumilearn.co.kr/",
     "domain": "lumilearn.co.kr",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "유호연",
+        "company": "Taming Lab",
+        "reason": "초기 창업"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업"
+      },
+      {
+        "name": "남성일",
+        "company": "Cubixel",
+        "reason": "초기 창업"
+      },
+      {
+        "name": "정운영",
+        "company": "버킷플레이스 (오늘의집)",
+        "reason": "초기 창업"
+      }
+    ]
   },
   {
     "name": "윤정락",
@@ -2526,7 +4162,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jeongrak-yoon-561112386?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "https://alphacut.video/",
     "domain": "alphacut.video",
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "박도현",
+        "company": "Stockdale Labs",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "이소영",
@@ -2542,7 +4200,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/soyoung-diana-lee",
     "homepage": "stealcut.com",
     "domain": "stealcut.com",
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "GTM·세일즈 · AI/머신러닝"
+      },
+      {
+        "name": "유호연",
+        "company": "Taming Lab",
+        "reason": "GTM·세일즈"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "마케팅/브랜딩 · GTM·세일즈"
+      },
+      {
+        "name": "박인택",
+        "company": "Snipit",
+        "reason": "마케팅/브랜딩 · GTM·세일즈"
+      }
+    ]
   },
   {
     "name": "조수민",
@@ -2553,7 +4233,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/sumin2designer/",
     "homepage": "https://toss.im/?srsltid=AfmBOopngzJ1aLcXR_CtRoNZKoXLn0otmDgjfWyxqicpAcuQvYT8rjZj",
     "domain": "toss.im",
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "디자인 · 디자인/콘텐츠"
+      },
+      {
+        "name": "오하나",
+        "company": "서울대 HCC Lab",
+        "reason": "디자인 · 디자인/콘텐츠"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "디자인 · 디자인/콘텐츠"
+      },
+      {
+        "name": "고재천",
+        "company": "코코의원",
+        "reason": "디자인"
+      }
+    ]
   },
   {
     "name": "유호연",
@@ -2564,7 +4266,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/호연-유-b6a0a7254?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "taminglab.com",
     "domain": "taminglab.com",
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "강윤구",
+        "company": "—",
+        "reason": "초기 창업 · GTM·세일즈"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "전수연",
@@ -2579,7 +4303,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/suyeon-jeon-210a95233/",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "김태엽",
+        "company": "AIRFITME",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "지종현",
+        "company": "서울대 (석사)",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "최형욱",
+        "company": "서울대 (박사과정)",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -2592,7 +4338,29 @@ const MEMBERS = [
     "linkedin": "link",
     "homepage": "flover.ai",
     "domain": "flover.ai",
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "석윤찬",
+        "company": "비주얼캠프",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "홍성훈",
@@ -2608,7 +4376,29 @@ const MEMBERS = [
     "linkedin": "linkedin.com/in/seonghun-hong-635566229",
     "homepage": "nitrofy.io",
     "domain": "nitrofy.io",
-    "cohort": "29"
+    "cohort": "29",
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "조한용",
@@ -2624,7 +4414,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/한용-조-06a3a41a4?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "https://www.scatterlab.co.kr/ko/intro",
     "domain": "scatterlab.co.kr",
-    "cohort": "29"
+    "cohort": "29",
+    "recommendations": [
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      },
+      {
+        "name": "지우석",
+        "company": "Sendbird",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이준상",
@@ -2635,7 +4447,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/junsang-rhee-0b6434207?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "blux.ai",
     "domain": "blux.ai",
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "함승우",
+        "company": "Galux",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "류영석",
+        "company": "AppBuildChat",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "고재천",
+        "company": "코코의원",
+        "reason": "디자인"
+      },
+      {
+        "name": "허준석",
+        "company": "SOMA (Collec)",
+        "reason": "디자인"
+      }
+    ]
   },
   {
     "name": "박시진",
@@ -2646,7 +4480,29 @@ const MEMBERS = [
     "linkedin": "https://linkedin.com/in/sijin-park",
     "homepage": "https://www.founderssalon.kr/",
     "domain": "founderssalon.kr",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "초기 창업 · 공간·모빌리티"
+      },
+      {
+        "name": "조민희",
+        "company": "알리콘",
+        "reason": "초기 창업 · 공간·모빌리티"
+      },
+      {
+        "name": "김남예",
+        "company": "숙박업",
+        "reason": "초기 창업 · 공간·모빌리티"
+      },
+      {
+        "name": "김한준",
+        "company": "경동재 (한옥체험업)",
+        "reason": "초기 창업 · 공간·모빌리티"
+      }
+    ]
   },
   {
     "name": "남형걸",
@@ -2662,6 +4518,28 @@ const MEMBERS = [
     "categories": [
       "AI/머신러닝",
       "커뮤니티/미디어"
+    ],
+    "recommendations": [
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
     ]
   },
   {
@@ -2673,7 +4551,29 @@ const MEMBERS = [
     "linkedin": "072756@snu.ac.kr",
     "homepage": "https://www.stonebridgeventures.vc/",
     "domain": "stonebridgeventures.vc",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · VC/투자"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "금융·투자 · VC/투자"
+      },
+      {
+        "name": "김지섭",
+        "company": "Hashed",
+        "reason": "금융·투자 · VC/투자"
+      },
+      {
+        "name": "하고은",
+        "company": "LG전자",
+        "reason": "금융·투자 · VC/투자업"
+      }
+    ]
   },
   {
     "name": "지종현",
@@ -2689,7 +4589,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jonghyun-ji-10b301382?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     "homepage": "",
     "domain": null,
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "최형욱",
+        "company": "서울대 (박사과정)",
+        "reason": "연구/대학원 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 헬스케어·바이오"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "이정현",
@@ -2704,7 +4626,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://hanwhaaerospace.com",
     "domain": "hanwhaaerospace.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "엄상혁",
+        "company": "Revita",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "윤재웅",
+        "company": "Solomon Tax",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      }
+    ]
   },
   {
     "name": "김재우",
@@ -2715,7 +4659,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "www.awesomepiece.com",
     "domain": "awesomepiece.com",
-    "cohort": "5"
+    "cohort": "5",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "신재용",
+        "company": "SportsPrism",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      }
+    ]
   },
   {
     "name": "이민석",
@@ -2727,7 +4693,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/mscwrd02/",
     "homepage": "https://alphacut.video",
     "domain": "alphacut.video",
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이원도",
+        "company": "Reliever",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "김인호",
+        "company": "Looxent",
+        "reason": "법률·컨설팅"
+      }
+    ]
   },
   {
     "name": "성지유",
@@ -2738,7 +4726,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://pully.today/",
     "domain": "pully.today",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "커뮤니티/미디어"
+      },
+      {
+        "name": "박민준",
+        "company": "—",
+        "reason": "커뮤니티/미디어"
+      },
+      {
+        "name": "박시진",
+        "company": "Founders Salon",
+        "reason": "커뮤니티/미디어"
+      },
+      {
+        "name": "남형걸",
+        "company": "Mingle Labs",
+        "reason": "커뮤니티/미디어"
+      }
+    ]
   },
   {
     "name": "이정",
@@ -2754,7 +4764,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jjung-lee",
     "homepage": "",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "GTM·세일즈"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "연구/대학원 · 교육/에듀테크"
+      },
+      {
+        "name": "박인택",
+        "company": "Snipit",
+        "reason": "GTM·세일즈"
+      },
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "GTM·세일즈"
+      }
+    ]
   },
   {
     "name": "이상제",
@@ -2770,7 +4802,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "www.megastudy.net",
     "domain": "megastudy.net",
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "교육·에듀테크 · AI/머신러닝"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "교육·에듀테크 · AI/머신러닝"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "교육·에듀테크 · AI/머신러닝"
+      },
+      {
+        "name": "김태훈",
+        "company": "Uniroad",
+        "reason": "교육·에듀테크 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "박혜림",
@@ -2787,7 +4841,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · 마케팅/브랜딩"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "커머스·유통 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "문건기",
@@ -2804,7 +4880,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/kianmoon/",
     "homepage": "https://haechi.io/",
     "domain": "haechi.io",
-    "cohort": "21"
+    "cohort": "21",
+    "recommendations": [
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크/하드웨어 · AI/머신러닝"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "박병호",
+        "company": "말미잘",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "name": "허경석",
@@ -2821,7 +4919,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/kyungseok-hur-b41629117/",
     "homepage": "https://replit.mfitlab.com/",
     "domain": "replit.mfitlab.com",
-    "cohort": "11"
+    "cohort": "11",
+    "recommendations": [
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "SaaS/생산성 · 에이전시·자동화"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "SaaS/생산성 · 에이전시·자동화"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "최호승",
+        "company": "와들 (Gentto)",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "신재용",
@@ -2836,7 +4956,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "www.sportsprism.net",
     "domain": "sportsprism.net",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "초기 창업 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "박도현",
@@ -2847,7 +4989,29 @@ const MEMBERS = [
     "linkedin": "https://callmejustdodo.com/",
     "homepage": "http://stockdalelabs.com/",
     "domain": "stockdalelabs.com",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "박상구",
@@ -2863,7 +5027,29 @@ const MEMBERS = [
     "linkedin": "@parksanggoo",
     "homepage": "cbre.com",
     "domain": "cbre.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "백제영",
+        "company": "현대차증권",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      },
+      {
+        "name": "박언요",
+        "company": "브룩필드자산운용",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      },
+      {
+        "name": "유동선",
+        "company": "서울대 국제농업기술대학원",
+        "reason": "딥테크·하드웨어 · 헬스케어·바이오"
+      },
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      }
+    ]
   },
   {
     "name": "김찬욱",
@@ -2874,7 +5060,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/chanukkim?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "homepage": "https://blog.ditto.ink",
     "domain": "blog.ditto.ink",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -2891,7 +5099,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/sangwon-im",
     "homepage": "https://neopress.ai",
     "domain": "neopress.ai",
-    "cohort": "29"
+    "cohort": "29",
+    "recommendations": [
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "이동녘",
+        "company": "Moody",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "정혜령",
@@ -2907,7 +5137,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/hyeryung-chloe-chung/",
     "homepage": "https://seoulskinlog.com/",
     "domain": "seoulskinlog.com",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "글로벌 진출 · 초기 창업"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "글로벌 진출 · 초기 창업"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "name": "전승우",
@@ -2918,7 +5170,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "정인기",
@@ -2934,7 +5188,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "헬스케어컴퍼니/532diet.com",
     "domain": "532diet.com",
-    "cohort": "12"
+    "cohort": "12",
+    "recommendations": [
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "박혜림",
+        "company": "서울대",
+        "reason": "커머스·유통 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "이태훈",
@@ -2945,7 +5221,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      }
+    ]
   },
   {
     "name": "김채영",
@@ -2965,7 +5263,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/pinkchaechae/",
     "homepage": "https://beaubble.com/kr/home",
     "domain": "beaubble.com",
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · AI/머신러닝"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "푸드/헬스 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "정영훈",
@@ -2976,7 +5296,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/yeonghun-jeong-88b61a320/?skipRedirect=true",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "김인호",
+        "company": "Looxent",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "방준헌",
+        "company": "—",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "남수진",
+        "company": "씨그로",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      }
+    ]
   },
   {
     "name": "이용은",
@@ -2992,7 +5334,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/yongeunlee9/",
     "homepage": "https://ddtalk.co",
     "domain": "ddtalk.co",
-    "cohort": "13"
+    "cohort": "13",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "커머스·유통 · 개발·엔지니어링"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 개발·엔지니어링"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "김동재",
@@ -3004,7 +5368,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "www.upbit.com",
     "domain": "upbit.com",
-    "cohort": "19"
+    "cohort": "19",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "지우석",
+        "company": "Sendbird",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "최은석",
@@ -3021,7 +5407,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/%EC%9D%80%EC%84%9D-%EC%B5%9C-14693b289/",
     "homepage": "https://www.mydailybyte.com/daily-byte/main",
     "domain": "mydailybyte.com",
-    "cohort": "25"
+    "cohort": "25",
+    "recommendations": [
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · SaaS/생산성"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "콘텐츠·크리에이터 · 팀빌딩·채용"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "박수상",
+        "company": "리멤버앤컴퍼니",
+        "reason": "팀빌딩·채용 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "강경원",
@@ -3037,7 +5445,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "14"
+    "cohort": "14",
+    "recommendations": [
+      {
+        "name": "백제영",
+        "company": "현대차증권",
+        "reason": "금융·투자 · 핀테크/금융"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "금융·투자 · 핀테크/금융"
+      },
+      {
+        "name": "남궁준",
+        "company": "WorldQuant",
+        "reason": "금융·투자 · 핀테크/금융"
+      },
+      {
+        "name": "문건기",
+        "company": "해치랩스",
+        "reason": "금융·투자 · 핀테크/금융"
+      }
+    ]
   },
   {
     "name": "오하나",
@@ -3053,7 +5483,29 @@ const MEMBERS = [
     "linkedin": "https://hanaisreal.github.io/",
     "homepage": "https://hcclab.notion.site/hccl",
     "domain": "hcclab.notion.site",
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "박현중",
+        "company": "AppBuildChat",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "류영석",
+        "company": "AppBuildChat",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "최형욱",
+        "company": "서울대 (박사과정)",
+        "reason": "연구/대학원 · AI/머신러닝"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "디자인 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "김한준",
@@ -3069,7 +5521,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/hanjun12/",
     "homepage": "https://airbnb.co.kr/h/gyeongdongjae",
     "domain": "airbnb.co.kr",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "조민희",
+        "company": "알리콘",
+        "reason": "모빌리티/공간 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "초기 창업 · 모빌리티/공간"
+      }
+    ]
   },
   {
     "name": "김나현",
@@ -3080,7 +5554,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": "",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "이유리",
@@ -3091,7 +5567,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": "",
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "sponsor": true,
@@ -3107,7 +5585,29 @@ const MEMBERS = [
     "linkedin": "https://thirsty-meter-edf.notion.site/653fb95e8e1b4169bd8b658fea7975b1",
     "homepage": "",
     "domain": null,
-    "cohort": "26"
+    "cohort": "26",
+    "recommendations": [
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "개발·엔지니어링 · 금융·투자"
+      },
+      {
+        "name": "윤재웅",
+        "company": "Solomon Tax",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "김인범",
+        "company": "토스뱅크",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 개발/엔지니어링"
+      }
+    ]
   },
   {
     "name": "임형철",
@@ -3125,7 +5625,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/hlim1/",
     "homepage": "https://aimed.xyz/",
     "domain": "aimed.xyz",
-    "cohort": "14"
+    "cohort": "14",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "딥테크·하드웨어 · AI/머신러닝"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -3142,7 +5664,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/abcdedu/",
     "homepage": "https://abcdedu.com",
     "domain": "abcdedu.com",
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      },
+      {
+        "name": "김태훈",
+        "company": "Uniroad",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "김태엽",
+        "company": "AIRFITME",
+        "reason": "초기 창업 · 팀빌딩·채용"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -3154,7 +5698,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://cubixel.co.kr",
     "domain": "cubixel.co.kr",
-    "cohort": "2"
+    "cohort": "2",
+    "recommendations": [
+      {
+        "name": "김남예",
+        "company": "숙박업",
+        "reason": "초기 창업 · 딥테크/하드웨어"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 딥테크/하드웨어"
+      },
+      {
+        "name": "심재용",
+        "company": "이노서스",
+        "reason": "초기 창업 · 딥테크/하드웨어"
+      },
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "초기 창업 · 딥테크/하드웨어"
+      }
+    ]
   },
   {
     "name": "박송하",
@@ -3169,7 +5735,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/songha-park",
     "homepage": "",
     "domain": null,
-    "cohort": "37"
+    "cohort": "37",
+    "recommendations": [
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "예비창업/학생 · 푸드/헬스"
+      },
+      {
+        "name": "박혜림",
+        "company": "서울대",
+        "reason": "예비창업/학생 · 푸드/헬스"
+      },
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "이운성",
+        "company": "Sweet Balance",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -3182,7 +5770,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/un-yeong-jeong-36b798103",
     "homepage": "https://ohou.se",
     "domain": "ohou.se",
-    "cohort": "19"
+    "cohort": "19",
+    "recommendations": [
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "커머스·유통 · 콘텐츠·크리에이터"
+      }
+    ]
   },
   {
     "name": "박현중",
@@ -3198,7 +5808,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/appbuildchat-eric-park",
     "homepage": "https://www.appbuildchat.com",
     "domain": "appbuildchat.com",
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "SaaS/생산성 · AI/머신러닝"
+      },
+      {
+        "name": "지우석",
+        "company": "Sendbird",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "강민영",
+        "company": "미국 IT 회사",
+        "reason": "AI/머신러닝 · 글로벌 진출"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "디자인 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "권민지",
@@ -3217,7 +5849,29 @@ const MEMBERS = [
     "linkedin": "https://massive-night-610.notion.site/27b962fc0df0804db466ebca3819449f?source=copy_link",
     "homepage": "",
     "domain": null,
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 디자인"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "커머스·유통 · SaaS/생산성"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · 초기 창업"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "커머스·유통 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "김한",
@@ -3228,7 +5882,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://shameeting.com",
     "domain": "shameeting.com",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "김주환",
+        "company": "스타트업",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "장원준",
+        "company": "스타트업",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "류승준",
+        "company": "Feedvite",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "조건희",
+        "company": "Meetup",
+        "reason": "초기 창업 · 이외"
+      }
+    ]
   },
   {
     "sponsor": true,
@@ -3240,7 +5916,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/geonhee-jo-7780562bb/",
     "homepage": "",
     "domain": null,
-    "cohort": "33"
+    "cohort": "33",
+    "recommendations": [
+      {
+        "name": "류승준",
+        "company": "Feedvite",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 글로벌 진출"
+      },
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "초기 창업 · 글로벌 진출"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · 글로벌 진출"
+      }
+    ]
   },
   {
     "name": "방준헌",
@@ -3256,7 +5954,29 @@ const MEMBERS = [
     "linkedin": "http://linkedin.com/in/bang17",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "김인호",
+        "company": "Looxent",
+        "reason": "법률/컨설팅 · VC/투자"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "VC/투자 · 법률·컨설팅"
+      },
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "정영훈",
+        "company": "컨설팅펌",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      }
+    ]
   },
   {
     "name": "허도원",
@@ -3271,7 +5991,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/evan1004",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "엄상혁",
+        "company": "Revita",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "김남예",
+        "company": "숙박업",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      }
+    ]
   },
   {
     "name": "이재찬",
@@ -3283,7 +6025,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jay-lee01/",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "이운성",
+        "company": "Sweet Balance",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · 푸드/헬스"
+      },
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "초기 창업 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "송병준",
@@ -3294,7 +6058,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "1"
+    "cohort": "1",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "김재우",
+        "company": "어썸피스",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      }
+    ]
   },
   {
     "name": "하상우",
@@ -3305,7 +6091,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "1"
+    "cohort": "1",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "장세영",
@@ -3320,6 +6108,28 @@ const MEMBERS = [
     "categories": [
       "AI/머신러닝",
       "게임/콘텐츠"
+    ],
+    "recommendations": [
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "윤정락",
+        "company": "알파컷",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 게임/콘텐츠"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
     ]
   },
   {
@@ -3331,7 +6141,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "5"
+    "cohort": "5",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "조헌",
@@ -3342,7 +6154,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "12"
+    "cohort": "12",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "하규원",
@@ -3353,7 +6167,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/규원-하-a73485207",
     "homepage": "https://www.stealcut.com",
     "domain": "stealcut.com",
-    "cohort": "29"
+    "cohort": "29",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "석윤찬",
+        "company": "비주얼캠프",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "최호승",
@@ -3369,6 +6205,28 @@ const MEMBERS = [
     "categories": [
       "AI/머신러닝",
       "개발/엔지니어링"
+    ],
+    "recommendations": [
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      },
+      {
+        "name": "윤재웅",
+        "company": "Solomon Tax",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "김동재",
+        "company": "두나무",
+        "reason": "AI/머신러닝"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      }
     ]
   },
   {
@@ -3386,7 +6244,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "심재용",
+        "company": "이노서스",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "연구/대학원 · 딥테크/하드웨어"
+      }
+    ]
   },
   {
     "name": "박지은",
@@ -3402,7 +6282,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jekooz",
     "homepage": "https://noily.kr/",
     "domain": "noily.kr",
-    "cohort": "27"
+    "cohort": "27",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 푸드/헬스"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "커머스·유통 · AI/머신러닝"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "푸드/헬스 · AI/머신러닝"
+      },
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이온유",
@@ -3414,7 +6316,29 @@ const MEMBERS = [
     "linkedin": "www.linkedin.com/in/ianlee03",
     "homepage": "https://pispherelab.com/en",
     "domain": "pispherelab.com",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "딥테크/하드웨어"
+      },
+      {
+        "name": "엄상혁",
+        "company": "Revita",
+        "reason": "딥테크/하드웨어"
+      },
+      {
+        "name": "백제영",
+        "company": "현대차증권",
+        "reason": "딥테크/하드웨어"
+      },
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "딥테크/하드웨어"
+      }
+    ]
   },
   {
     "name": "이혜주",
@@ -3431,7 +6355,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/juleee/",
     "homepage": "https://www.sleber.net",
     "domain": "sleber.net",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "AI/머신러닝 · 개발·엔지니어링"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "AI/머신러닝 · 마케팅/브랜딩"
+      }
+    ]
   },
   {
     "name": "주하담",
@@ -3448,7 +6394,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/hadamjoo",
     "homepage": "https://leviosa.ai.kr/",
     "domain": "leviosa.ai.kr",
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "마케팅/브랜딩 · AI/머신러닝"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      },
+      {
+        "name": "강민",
+        "company": "Ocho",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이채은",
@@ -3459,7 +6427,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/chaechaelee",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 예비창업/학생"
+      }
+    ]
   },
   {
     "name": "남수진",
@@ -3470,7 +6460,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://litmers.com",
     "domain": "litmers.com",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "김인호",
+        "company": "Looxent",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "정영훈",
+        "company": "컨설팅펌",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "김응철",
+        "company": "—",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      }
+    ]
   },
   {
     "name": "변호재",
@@ -3481,7 +6493,9 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [],
+    "recommendationsEmpty": true
   },
   {
     "name": "하고은",
@@ -3497,7 +6511,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.lg.co.kr/",
     "domain": "lg.co.kr",
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "금융·투자 · 마케팅/브랜딩"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "콘텐츠·크리에이터 · 마케팅/브랜딩"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "콘텐츠·크리에이터 · 금융·투자"
+      },
+      {
+        "name": "박혜림",
+        "company": "서울대",
+        "reason": "마케팅/브랜딩 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "name": "백두산",
@@ -3512,7 +6548,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/dusanbaek/",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "연구/대학원"
+      },
+      {
+        "name": "오현경",
+        "company": "서울대 MBA",
+        "reason": "연구/대학원"
+      },
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      }
+    ]
   },
   {
     "name": "최민우",
@@ -3523,7 +6581,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/leoch01/",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      }
+    ]
   },
   {
     "name": "이하빈",
@@ -3538,7 +6618,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/이하빈-6748572b6",
     "homepage": "https://m.a-bly.com/",
     "domain": "a-bly.com",
-    "cohort": ""
+    "cohort": "",
+    "recommendations": [
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "커머스/유통"
+      },
+      {
+        "name": "신재우",
+        "company": "워하츠스트레인저 / 캐리더월드",
+        "reason": "커머스/유통"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "커머스/유통"
+      },
+      {
+        "name": "김주환",
+        "company": "스타트업",
+        "reason": "이외"
+      }
+    ]
   },
   {
     "name": "김민균",
@@ -3550,7 +6652,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/david-mingyun-kim-b60b76336/",
     "homepage": "",
     "domain": null,
-    "cohort": "35"
+    "cohort": "35",
+    "recommendations": [
+      {
+        "name": "위재영",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "박민준",
+        "company": "—",
+        "reason": "예비창업/학생"
+      }
+    ]
   },
   {
     "name": "박병호",
@@ -3565,7 +6689,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/byungho-park-bh/",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "박시현",
+        "company": "Abovetech",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "문건기",
+        "company": "해치랩스",
+        "reason": "초기 창업 · 금융·투자"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "초기 창업 · 금융·투자"
+      }
+    ]
   },
   {
     "name": "김지섭",
@@ -3581,7 +6727,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://hashed.com",
     "domain": "hashed.com",
-    "cohort": "20"
+    "cohort": "20",
+    "recommendations": [
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "AI/머신러닝 · VC/투자업"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "AI/머신러닝 · VC/투자업"
+      },
+      {
+        "name": "문건기",
+        "company": "해치랩스",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "금융·투자 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "김응철",
@@ -3593,7 +6761,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/eungcheol/",
     "homepage": "",
     "domain": null,
-    "cohort": "26"
+    "cohort": "26",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "정영훈",
+        "company": "컨설팅펌",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "방준헌",
+        "company": "—",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      },
+      {
+        "name": "남수진",
+        "company": "씨그로",
+        "reason": "법률/컨설팅 · 법률·컨설팅"
+      }
+    ]
   },
   {
     "name": "서영운",
@@ -3609,7 +6799,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/%EC%98%81%EC%9A%B4-%EC%84%9C-84468b1ba/",
     "homepage": "https://swweetter.ai",
     "domain": "swweetter.ai",
-    "cohort": "31"
+    "cohort": "31",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "name": "박언요",
@@ -3625,7 +6837,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/unyo-park-%EB%B0%95%EC%96%B8%EC%9A%94-06a829173/",
     "homepage": "https://brookfieldsouthkorea.kr/",
     "domain": null,
-    "cohort": "18"
+    "cohort": "18",
+    "recommendations": [
+      {
+        "name": "백제영",
+        "company": "현대차증권",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      },
+      {
+        "name": "구본영",
+        "company": "에브리바이크",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      },
+      {
+        "name": "조민희",
+        "company": "알리콘",
+        "reason": "모빌리티/공간 · 공간·모빌리티"
+      }
+    ]
   },
   {
     "name": "이윤철",
@@ -3636,7 +6870,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/ycyi",
     "homepage": "https://yoonchulyi.com",
     "domain": "yoonchulyi.com",
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "현윤경",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "박민준",
+        "company": "—",
+        "reason": "예비창업/학생"
+      },
+      {
+        "name": "이태훈",
+        "company": "창업준비중",
+        "reason": "예비창업/학생"
+      }
+    ]
   },
   {
     "name": "김태훈",
@@ -3652,7 +6908,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://uni2road.com",
     "domain": "uni2road.com",
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "박상준",
+        "company": "예비창업자",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "한서현",
+        "company": "ABCDEdu",
+        "reason": "AI/머신러닝 · 초기 창업"
+      },
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "개발·엔지니어링 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "박수영",
@@ -3667,7 +6945,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/suyoung-park-666150299/",
     "homepage": "https://genie.snu.ac.kr/",
     "domain": null,
-    "cohort": "30"
+    "cohort": "30",
+    "recommendations": [
+      {
+        "name": "김현서",
+        "company": "서울대 (대학원)",
+        "reason": "연구/대학원 · 딥테크/하드웨어"
+      },
+      {
+        "name": "유동선",
+        "company": "서울대 국제농업기술대학원",
+        "reason": "연구/대학원 · 딥테크/하드웨어"
+      },
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "딥테크/하드웨어"
+      },
+      {
+        "name": "엄상혁",
+        "company": "Revita",
+        "reason": "딥테크/하드웨어"
+      }
+    ]
   },
   {
     "name": "조승우",
@@ -3678,7 +6978,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://tonghada.arrghsoft.com/ko",
     "domain": null,
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "정희수",
+        "company": "Kinni",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "김도엽",
+        "company": "Hitchhiker AI",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "석윤찬",
+        "company": "비주얼캠프",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "최은우",
@@ -3694,7 +7016,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/eunwoo-kelly-choi",
     "homepage": "",
     "domain": null,
-    "cohort": "34"
+    "cohort": "34",
+    "recommendations": [
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "장건혁",
+        "company": "서울넘버풀",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      },
+      {
+        "name": "정운영",
+        "company": "버킷플레이스 (오늘의집)",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "개발·엔지니어링 · 초기 창업"
+      }
+    ]
   },
   {
     "name": "박준하",
@@ -3705,7 +7049,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://team.blitz-dynamics.com/",
     "domain": null,
-    "cohort": "20"
+    "cohort": "20",
+    "recommendations": [
+      {
+        "name": "김주환",
+        "company": "스타트업",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "장원준",
+        "company": "스타트업",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "류승준",
+        "company": "Feedvite",
+        "reason": "초기 창업 · 이외"
+      },
+      {
+        "name": "김한",
+        "company": "샤미팅",
+        "reason": "초기 창업 · 이외"
+      }
+    ]
   },
   {
     "name": "전용원",
@@ -3721,7 +7087,29 @@ const MEMBERS = [
     "linkedin": "https://kr.linkedin.com/in/buidlermason",
     "homepage": "https://xitadel.fi",
     "domain": "xitadel.fi",
-    "cohort": "20"
+    "cohort": "20",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "커머스·유통 · 마케팅·브랜딩"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "교육·에듀테크 · 교육/에듀테크"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "커머스·유통 · 마케팅·브랜딩"
+      },
+      {
+        "name": "정운영",
+        "company": "버킷플레이스 (오늘의집)",
+        "reason": "커머스·유통 · 마케팅·브랜딩"
+      }
+    ]
   },
   {
     "name": "김권봉",
@@ -3732,7 +7120,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://motemote.kr",
     "domain": "motemote.kr",
-    "cohort": "19"
+    "cohort": "19",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "김서영",
+        "company": "볼랩 (베어볼)",
+        "reason": "초기 창업 · 교육/에듀테크"
+      },
+      {
+        "name": "이종민",
+        "company": "Lumilearn",
+        "reason": "초기 창업 · 교육/에듀테크"
+      }
+    ]
   },
   {
     "name": "장해욱",
@@ -3748,7 +7158,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/haewookjang/",
     "homepage": "",
     "domain": null,
-    "cohort": "19"
+    "cohort": "19",
+    "recommendations": [
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      },
+      {
+        "name": "강민",
+        "company": "Ocho",
+        "reason": "에이전시·자동화 · AI/머신러닝"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · AI/머신러닝"
+      },
+      {
+        "name": "한태구",
+        "company": "OmniQon",
+        "reason": "금융·투자 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "이세림",
@@ -3764,7 +7196,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/selim-lee-90168517/",
     "homepage": "",
     "domain": null,
-    "cohort": "10"
+    "cohort": "10",
+    "recommendations": [
+      {
+        "name": "강민영",
+        "company": "미국 IT 회사",
+        "reason": "대기업/엔터프라이즈"
+      },
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "법률/컨설팅"
+      },
+      {
+        "name": "김인호",
+        "company": "Looxent",
+        "reason": "법률/컨설팅"
+      },
+      {
+        "name": "박연경",
+        "company": "삼성전자",
+        "reason": "대기업/엔터프라이즈"
+      }
+    ]
   },
   {
     "name": "강윤구",
@@ -3780,7 +7234,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "32"
+    "cohort": "32",
+    "recommendations": [
+      {
+        "name": "유호연",
+        "company": "Taming Lab",
+        "reason": "초기 창업 · GTM·세일즈"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · GTM·세일즈"
+      },
+      {
+        "name": "박종원",
+        "company": "셀러로그",
+        "reason": "초기 창업 · 에이전시·자동화"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "초기 창업 · 커머스/유통"
+      }
+    ]
   },
   {
     "name": "심재용",
@@ -3796,7 +7272,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://innoxus.co.kr",
     "domain": "innoxus.co.kr",
-    "cohort": "13"
+    "cohort": "13",
+    "recommendations": [
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "이예은",
+        "company": "Ocho",
+        "reason": "초기 창업 · 마케팅·브랜딩"
+      },
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "딥테크/하드웨어 · 딥테크·하드웨어"
+      },
+      {
+        "name": "박혜림",
+        "company": "서울대",
+        "reason": "마케팅·브랜딩 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "윤서영",
@@ -3811,7 +7309,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/seoyoung06",
     "homepage": "",
     "domain": null,
-    "cohort": "38"
+    "cohort": "38",
+    "recommendations": [
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "교육·에듀테크 · 교육/에듀테크"
+      },
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "교육·에듀테크 · 교육/에듀테크"
+      },
+      {
+        "name": "한수현",
+        "company": "Freewheelin",
+        "reason": "교육·에듀테크 · 교육/에듀테크"
+      },
+      {
+        "name": "김지혜",
+        "company": "예비창업자",
+        "reason": "콘텐츠·크리에이터 · 예비창업/학생"
+      }
+    ]
   },
   {
     "name": "문상철",
@@ -3826,7 +7346,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/sangcheol-m-08a548214/",
     "homepage": "https://keicltd.com/",
     "domain": "keicltd.com",
-    "cohort": "27"
+    "cohort": "27",
+    "recommendations": [
+      {
+        "name": "박상구",
+        "company": "CBRE",
+        "reason": "딥테크/하드웨어 · 금융·투자"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "딥테크/하드웨어 · 금융·투자"
+      },
+      {
+        "name": "김지원",
+        "company": "D3 Jubilee",
+        "reason": "금융·투자 · 딥테크·하드웨어"
+      },
+      {
+        "name": "강병주",
+        "company": "PisphereLab",
+        "reason": "딥테크/하드웨어 · 금융·투자"
+      }
+    ]
   },
   {
     "name": "예성빈",
@@ -3837,7 +7379,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.rayvmc.co.kr",
     "domain": "rayvmc.co.kr",
-    "cohort": "18"
+    "cohort": "18",
+    "recommendations": [
+      {
+        "name": "조영일",
+        "company": "인테이크",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "고재천",
+        "company": "코코의원",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "주무열",
+        "company": "관악구의회",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      },
+      {
+        "name": "함승우",
+        "company": "Galux",
+        "reason": "푸드/헬스 · 헬스케어·바이오"
+      }
+    ]
   },
   {
     "name": "박수상",
@@ -3853,7 +7417,29 @@ const MEMBERS = [
     "linkedin": "http://www.linkedin.com/in/susang-park",
     "homepage": "http://hello.remember.co.kr/",
     "domain": null,
-    "cohort": "18"
+    "cohort": "18",
+    "recommendations": [
+      {
+        "name": "김수민",
+        "company": "BoltLab",
+        "reason": "팀빌딩·채용 · AI/머신러닝"
+      },
+      {
+        "name": "김형준",
+        "company": "모노리스 (Kinni)",
+        "reason": "팀빌딩·채용 · AI/머신러닝"
+      },
+      {
+        "name": "김태엽",
+        "company": "AIRFITME",
+        "reason": "팀빌딩·채용 · AI/머신러닝"
+      },
+      {
+        "name": "임형철",
+        "company": "Aimed / 블로코어 / TrueGlobalVentures",
+        "reason": "팀빌딩·채용 · AI/머신러닝"
+      }
+    ]
   },
   {
     "name": "류영석",
@@ -3868,7 +7454,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://appbuildchat.com",
     "domain": "appbuildchat.com",
-    "cohort": "26"
+    "cohort": "26",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "박현중",
+        "company": "AppBuildChat",
+        "reason": "디자인 · AI/머신러닝"
+      },
+      {
+        "name": "이학",
+        "company": "프리랜서",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      },
+      {
+        "name": "정우철",
+        "company": "OKPOS",
+        "reason": "AI/머신러닝 · 개발/엔지니어링"
+      }
+    ]
   },
   {
     "name": "최형욱",
@@ -3884,7 +7492,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/hwchoi/",
     "homepage": "",
     "domain": null,
-    "cohort": "25"
+    "cohort": "25",
+    "recommendations": [
+      {
+        "name": "지종현",
+        "company": "서울대 (석사)",
+        "reason": "연구/대학원 · AI/머신러닝"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      },
+      {
+        "name": "박지은",
+        "company": "쿠즈코퍼레이션",
+        "reason": "AI/머신러닝 · 푸드/헬스"
+      }
+    ]
   },
   {
     "name": "송병근",
@@ -3896,7 +7526,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "25"
+    "cohort": "25",
+    "recommendations": [
+      {
+        "name": "김채영",
+        "company": "뷰블코리아",
+        "reason": "개발·엔지니어링 · 디자인"
+      },
+      {
+        "name": "이혜주",
+        "company": "SLEBER / Uniroad",
+        "reason": "콘텐츠·크리에이터 · 개발·엔지니어링"
+      },
+      {
+        "name": "양재혁",
+        "company": "알파컷",
+        "reason": "콘텐츠·크리에이터 · 게임/콘텐츠"
+      },
+      {
+        "name": "권민지",
+        "company": "TOPAMINS",
+        "reason": "게임/콘텐츠 · 디자인"
+      }
+    ]
   },
   {
     "name": "윤재우",
@@ -3911,7 +7563,29 @@ const MEMBERS = [
     "linkedin": "https://www.linkedin.com/in/jaewoo-yun-452a7233a/",
     "homepage": "https://snusv.net",
     "domain": null,
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "이비호",
+        "company": "Ulift",
+        "reason": "교육·에듀테크 · VC/투자"
+      },
+      {
+        "name": "윤서영",
+        "company": "화이트큐브",
+        "reason": "교육·에듀테크 · 예비창업/학생"
+      },
+      {
+        "name": "이승헌",
+        "company": "Proteam IP",
+        "reason": "교육·에듀테크"
+      },
+      {
+        "name": "한수현",
+        "company": "Freewheelin",
+        "reason": "교육·에듀테크"
+      }
+    ]
   },
   {
     "name": "이원도",
@@ -3927,7 +7601,29 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "http://teamreliever.com/",
     "domain": null,
-    "cohort": "36"
+    "cohort": "36",
+    "recommendations": [
+      {
+        "name": "허경석",
+        "company": "Replit Korea",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "한채영",
+        "company": "imHuve",
+        "reason": "초기 창업 · AI/머신러닝"
+      },
+      {
+        "name": "유호연",
+        "company": "Taming Lab",
+        "reason": "초기 창업 · GTM·세일즈"
+      },
+      {
+        "name": "홍성훈",
+        "company": "Nitrofy",
+        "reason": "초기 창업 · AI/머신러닝"
+      }
+    ]
   }
 ];
 
@@ -4137,9 +7833,42 @@ function findMemberIdxBySlug(slug) {
   try { slug = decodeURIComponent(slug); } catch (_) {}
   return MEMBERS.findIndex(m => m.name === slug);
 }
-function openMemberByName(name) {
-  const idx = MEMBERS.findIndex(m => m.name === name);
+function openMemberByName(name, company) {
+  const idx = MEMBERS.findIndex(m =>
+    m.name === name && (!company || m.company === company)
+  );
   if (idx >= 0) openModal(idx);
+}
+
+function renderRecommendations(m) {
+  if (m.recommendationsEmpty) {
+    return `<div class="modal-section">
+      <div class="modal-label">추천 만남</div>
+      <div class="modal-reco-empty">소개 내용을 구체적으로 알려주시면 만나보시면 좋을 동문을 소개드릴게요!</div>
+    </div>`;
+  }
+  const recs = m.recommendations || [];
+  if (!recs.length) return '';
+  const cards = recs.map(r => {
+    const b = MEMBERS.find(x => x.name === r.name && (!r.company || x.company === r.company));
+    if (!b) return '';
+    const cohort = b.cohort ? `${escapeHtml(b.cohort)}기` : '';
+    const role = b.role && b.role !== '—' ? escapeHtml(b.role) : '';
+    const company = b.company && b.company !== '—' ? escapeHtml(b.company) : '';
+    const meta = [cohort, role].filter(Boolean).join(' · ');
+    return `<button class="modal-reco-card" type="button" onclick="openMemberByName('${b.name}', ${JSON.stringify(b.company || '')})">
+      <div class="modal-reco-head">
+        <span class="modal-reco-name">${escapeHtml(b.name)}</span>
+        ${cohort ? `<span class="modal-reco-cohort">${cohort}</span>` : ''}
+      </div>
+      ${company ? `<div class="modal-reco-company">${company}${role ? ' · ' + role : ''}</div>` : (role ? `<div class="modal-reco-company">${role}</div>` : '')}
+      <div class="modal-reco-reason">${escapeHtml(r.reason)}</div>
+    </button>`;
+  }).filter(Boolean).join('');
+  return `<div class="modal-section">
+    <div class="modal-label">추천 만남</div>
+    <div class="modal-reco-list">${cards}</div>
+  </div>`;
 }
 
 function openModal(idx, pushHistory = true) {
@@ -4186,6 +7915,7 @@ function openModal(idx, pushHistory = true) {
           ${homepageUrl ? `<a class="modal-link" href="${homepageUrl}" target="_blank" rel="noopener">Company Site ↗</a>` : ''}
         </div>
       </div>` : ''}
+    ${renderRecommendations(m)}
     <div class="modal-section">
       <div class="modal-label">스크랩</div>
       <button type="button" class="modal-save-btn${isSaved(idx) ? ' saved' : ''}" data-idx="${idx}" onclick="toggleSave(${idx})">
