@@ -5515,7 +5515,7 @@ const CATEGORY_ORDER = [
   '공공/정치',
 ];
 
-let activeCategory = null;
+const activeCategories = new Set();
 let searchQuery = '';
 
 // Saved profiles (in-memory, clears on refresh) - declared early so render() can read it
@@ -5544,17 +5544,18 @@ function renderFilters() {
   container.innerHTML = '';
 
   const allChip = document.createElement('button');
-  allChip.className = 'filter-chip' + (activeCategory === null ? ' active' : '');
+  allChip.className = 'filter-chip' + (activeCategories.size === 0 ? ' active' : '');
   allChip.innerHTML = `All <span class="count">${total}</span>`;
-  allChip.onclick = () => { activeCategory = null; render(); };
+  allChip.onclick = () => { activeCategories.clear(); render(); };
   container.appendChild(allChip);
 
   for (const cat of cats) {
     const btn = document.createElement('button');
-    btn.className = 'filter-chip' + (activeCategory === cat ? ' active' : '');
+    btn.className = 'filter-chip' + (activeCategories.has(cat) ? ' active' : '');
     btn.innerHTML = `${cat} <span class="count">${counts[cat]}</span>`;
     btn.onclick = () => {
-      activeCategory = activeCategory === cat ? null : cat;
+      if (activeCategories.has(cat)) activeCategories.delete(cat);
+      else activeCategories.add(cat);
       render();
     };
     container.appendChild(btn);
@@ -5564,7 +5565,10 @@ function renderFilters() {
 function getFiltered() {
   const q = searchQuery.toLowerCase().trim();
   return MEMBERS.filter(m => {
-    if (activeCategory && !memberCats(m).includes(activeCategory)) return false;
+    if (activeCategories.size > 0) {
+      const hasAny = memberCats(m).some(c => activeCategories.has(c));
+      if (!hasAny) return false;
+    }
     if (!q) return true;
     const cohortStr = m.cohort ? `${m.cohort} ${m.cohort}기` : '';
     const hay = [m.name, m.company, m.role, memberCats(m).join(' '), m.intro, m.wants || '', cohortStr].join(' ').toLowerCase();
@@ -5644,22 +5648,28 @@ function render() {
     return;
   }
 
-  if (activeCategory) {
-    const section = document.createElement('div');
-    section.className = 'category-section';
-    section.innerHTML = `
-      <div class="category-header">
-        <h2 class="category-title">${activeCategory}</h2>
-        <span class="category-count">${filtered.length} ${filtered.length === 1 ? 'member' : 'members'}</span>
-      </div>
-      <div class="member-grid"></div>
-    `;
-    const grid = section.querySelector('.member-grid');
-    filtered.forEach((m) => {
-      const idx = MEMBERS.indexOf(m);
-      grid.appendChild(memberCard(m, idx, activeCategory));
-    });
-    directory.appendChild(section);
+  if (activeCategories.size > 0) {
+    // Render a section per selected category, containing matching members
+    for (const cat of CATEGORY_ORDER) {
+      if (!activeCategories.has(cat)) continue;
+      const inCat = filtered.filter(m => memberCats(m).includes(cat));
+      if (!inCat.length) continue;
+      const section = document.createElement('div');
+      section.className = 'category-section';
+      section.innerHTML = `
+        <div class="category-header">
+          <h2 class="category-title">${cat}</h2>
+          <span class="category-count">${inCat.length} ${inCat.length === 1 ? 'member' : 'members'}</span>
+        </div>
+        <div class="member-grid"></div>
+      `;
+      const grid = section.querySelector('.member-grid');
+      inCat.forEach((m) => {
+        const idx = MEMBERS.indexOf(m);
+        grid.appendChild(memberCard(m, idx, cat));
+      });
+      directory.appendChild(section);
+    }
   } else {
     const grouped = {};
     filtered.forEach((m) => {
