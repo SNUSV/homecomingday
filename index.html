@@ -651,6 +651,22 @@ header {
   margin-bottom: 6px;
   color: var(--ink);
 }
+.member-honorific {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0;
+  margin-left: 4px;
+  vertical-align: 0.2em;
+}
+.modal-honorific {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0;
+  margin-left: 6px;
+  vertical-align: 0.2em;
+}
 
 .member-role-line {
   font-family: 'JetBrains Mono', monospace;
@@ -6183,7 +6199,7 @@ function memberCard(m, idx, displayCat) {
     <div class="member-tag">${escapeHtml(tagCat)}</div>
     ${alumniLink}
     ${guestLinks}
-    <div class="member-name">${escapeHtml(m.name)}</div>
+    <div class="member-name">${escapeHtml(m.name)}${m.category === '후원사' ? '' : `<span class="member-honorific">${m.guest ? '님' : ' 동문님'}</span>`}</div>
     <div class="member-role-line">${m.cohort ? `<span class="member-cohort">${escapeHtml(m.cohort)}기</span> · ` : ''}${escapeHtml(m.role || '—')}</div>
     <div class="member-company">
       <div class="label">Company</div>
@@ -6345,7 +6361,7 @@ function openModal(idx, pushHistory = true) {
     ${sponsorStack}
     <div class="modal-cat">${escapeHtml(m.category)}</div>
     ${alumniLink}
-    <div class="modal-name">${escapeHtml(m.name)}</div>
+    <div class="modal-name">${escapeHtml(m.name)}${m.category === '후원사' ? '' : `<span class="modal-honorific">${m.guest ? '님' : ' 동문님'}</span>`}</div>
     <div class="modal-role">${m.cohort ? `<span class="modal-cohort">${escapeHtml(m.cohort)}기</span><span class="dot">·</span>` : ''}${escapeHtml(m.role || '—')}${m.company ? `<span class="at">at</span><span class="company-name">${escapeHtml(m.company)}</span>` : ''}</div>
     ${m.intro ? `
       <div class="modal-section">
