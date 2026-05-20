@@ -6165,14 +6165,11 @@ function memberCard(m, idx, displayCat) {
 
   const linksHtml = `
     <div class="member-links">
-      ${linkedinUrl
-        ? `<a class="member-link" href="${linkedinUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">LinkedIn ↗</a>`
-        : `<span class="member-link muted">No LinkedIn</span>`}
+      ${linkedinUrl ? `<a class="member-link" href="${linkedinUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">LinkedIn ↗</a>` : ''}
       ${homepageUrl
         ? `<a class="member-link" href="${homepageUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Site ↗</a>`
         : ``}
       ${m.email ? `<span class="member-contact" onclick="event.stopPropagation()">${escapeHtml(m.email)}</span>` : ''}
-      ${m.phone ? `<span class="member-contact" onclick="event.stopPropagation()">${escapeHtml(m.phone)}</span>` : ''}
       ${saveBtnHtml}
     </div>
   `;
@@ -6374,14 +6371,13 @@ function openModal(idx, pushHistory = true) {
         <div class="modal-label">만나고 싶은 분</div>
         <div class="modal-body">${escapeHtml(m.wants)}</div>
       </div>` : ''}
-    ${(linkedinUrl || homepageUrl || m.email || m.phone) ? `
+    ${(linkedinUrl || homepageUrl || m.email) ? `
       <div class="modal-section">
         <div class="modal-label">Links</div>
         <div class="modal-links">
           ${linkedinUrl ? `<a class="modal-link" href="${linkedinUrl}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ''}
           ${homepageUrl ? `<a class="modal-link" href="${homepageUrl}" target="_blank" rel="noopener">Company Site ↗</a>` : ''}
           ${m.email ? `<span class="modal-link modal-contact">${escapeHtml(m.email)}</span>` : ''}
-          ${m.phone ? `<span class="modal-link modal-contact">${escapeHtml(m.phone)}</span>` : ''}
         </div>
       </div>` : ''}
     ${renderRecommendations(m)}
