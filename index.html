@@ -550,6 +550,45 @@ header {
   align-self: flex-start;
 }
 .member-alumni-link:hover { background: rgba(10, 28, 196, 0.14); }
+.member-guest-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.member-guest-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.member-guest-link:hover { background: rgba(245, 158, 11, 0.22); }
+
+.modal-guest-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.modal-guest-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.1);
+  color: #92400e;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.modal-guest-chip:hover { background: rgba(245, 158, 11, 0.2); transform: translateY(-1px); }
 .member-sponsor-badge {
   display: inline-flex;
   align-items: center;
@@ -1465,7 +1504,10 @@ const MEMBERS = [
     "intro": "다음(Daum) 공동창업자 이택경 대표를 중심으로 니어스랩, 퍼블리, 몰로코 등을 성공시킨 창업자 출신 파트너들로 구성된 초기 스타트업 전문 투자사.",
     "linkedin": "https://www.linkedin.com/company/mashupventures",
     "homepage": "https://www.mashupventures.co",
-    "domain": "mashupventures.co"
+    "domain": "mashupventures.co",
+    "linkedGuests": [
+      "이승국"
+    ]
   },
   {
     "name": "AWS",
@@ -1475,7 +1517,13 @@ const MEMBERS = [
     "intro": "전 세계 1위 클라우드 인프라 플랫폼.",
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
-    "domain": "aws.amazon.com"
+    "domain": "aws.amazon.com",
+    "linkedGuests": [
+      "김민지",
+      "윤정원",
+      "이경희",
+      "이가현"
+    ]
   },
   {
     "name": "우리은행",
@@ -1485,7 +1533,10 @@ const MEMBERS = [
     "intro": "대한민국 대표 시중은행.",
     "linkedin": "",
     "homepage": "https://www.wooribank.com",
-    "domain": "wooribank.com"
+    "domain": "wooribank.com",
+    "linkedGuests": [
+      "안동빈"
+    ]
   },
   {
     "name": "SNUSV AngelClub",
@@ -1572,7 +1623,10 @@ const MEMBERS = [
     "intro": "기업용 SEO 최적화 블로그 툴 인블로그와 SEO/GEO 최적화 AI 웹빌더 Neopress를 만듭니다.",
     "linkedin": "",
     "homepage": "https://neopress.ai",
-    "domain": "neopress.ai"
+    "domain": "neopress.ai",
+    "linkedGuests": [
+      "이주호"
+    ]
   },
   {
     "name": "강병주",
@@ -6120,10 +6174,15 @@ function memberCard(m, idx, displayCat) {
     ? `<button type="button" class="member-alumni-link" onclick="event.stopPropagation(); openMemberByName('${m.linkedMember}')">동문 ${escapeHtml(m.linkedMember)} →</button>`
     : '';
 
+  const guestLinks = (m.linkedGuests && m.linkedGuests.length)
+    ? `<div class="member-guest-links">${m.linkedGuests.map(g => `<button type="button" class="member-guest-link" onclick="event.stopPropagation(); openMemberByName('${g}')">${escapeHtml(g)} →</button>`).join('')}</div>`
+    : '';
+
   card.innerHTML = `
     ${sponsorStack}
     <div class="member-tag">${escapeHtml(tagCat)}</div>
     ${alumniLink}
+    ${guestLinks}
     <div class="member-name">${escapeHtml(m.name)}</div>
     <div class="member-role-line">${m.cohort ? `<span class="member-cohort">${escapeHtml(m.cohort)}기</span> · ` : ''}${escapeHtml(m.role || '—')}</div>
     <div class="member-company">
@@ -6274,6 +6333,13 @@ function openModal(idx, pushHistory = true) {
     ? `<button type="button" class="member-alumni-link" onclick="openMemberByName('${m.linkedMember}')">동문 ${escapeHtml(m.linkedMember)} →</button>`
     : '';
 
+  const guestSection = (m.linkedGuests && m.linkedGuests.length)
+    ? `<div class="modal-section">
+        <div class="modal-label">함께 오시는 초청 내빈</div>
+        <div class="modal-guest-list">${m.linkedGuests.map(g => `<button type="button" class="modal-guest-chip" onclick="openMemberByName('${g}')">${escapeHtml(g)} →</button>`).join('')}</div>
+      </div>`
+    : '';
+
   modal.innerHTML = `
     <button class="modal-close" onclick="closeModal()">×</button>
     ${sponsorStack}
@@ -6286,6 +6352,7 @@ function openModal(idx, pushHistory = true) {
         <div class="modal-label">소개</div>
         <div class="modal-body">${escapeHtml(m.intro)}</div>
       </div>` : ''}
+    ${guestSection}
     ${m.wants ? `
       <div class="modal-section">
         <div class="modal-label">만나고 싶은 분</div>
