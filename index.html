@@ -264,9 +264,9 @@ header {
 .logo-marquee:nth-of-type(2) .logo-track { animation-direction: reverse; }
 .logo-track .logo-item {
   flex-shrink: 0;
-  width: 180px;
+  width: 200px;
   height: 72px;
-  padding: 0 16px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,11 +287,22 @@ header {
   display: block;
   object-fit: contain;
 }
-/* 정사각형 캔버스 안에 작게 들어간 로고 보정 */
+/* 정사각형/여백 많은 로고: 시각 크기 보정 (scale) */
 .logo-track img[src$="sellerlog.png"],
-.logo-track img[src$="elitejob.png"] {
-  transform: scale(1.5);
+.logo-track img[src$="elitejob.png"],
+.logo-track img[src$="flover.png"] {
+  transform: scale(1.9);
   transform-origin: center;
+}
+.logo-track img[src$="us-embassy.png"],
+.logo-track img[src$="snu-startup.png"] {
+  transform: scale(1.3);
+  transform-origin: center;
+}
+/* 와이드 비율인데 콘텐츠가 작은 로고 보정 */
+.logo-track img[src$="snu-techholdings.png"] {
+  max-width: none;
+  max-height: 64px;
 }
 @keyframes logo-scroll {
   from { transform: translateX(0); }
@@ -5596,257 +5607,210 @@ const MEMBERS = [
     "name": "김민지",
     "company": "AWS",
     "role": "Senior Investor Manager",
-    "category": "VC/투자",
-    "categories": [
-      "VC/투자",
-      "대기업/엔터프라이즈"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "윤정원",
     "company": "AWS",
     "role": "Senior Investor Manager",
-    "category": "VC/투자",
-    "categories": [
-      "VC/투자",
-      "대기업/엔터프라이즈"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "이경희",
     "company": "AWS",
     "role": "Senior Investor Manager",
-    "category": "VC/투자",
-    "categories": [
-      "VC/투자",
-      "대기업/엔터프라이즈"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "이가현",
     "company": "AWS",
     "role": "Startup Sales Manager",
-    "category": "대기업/엔터프라이즈",
-    "categories": [
-      "대기업/엔터프라이즈",
-      "GTM/세일즈"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "안동빈",
     "company": "우리은행 강남 BIZ 프라임센터",
     "role": "과장",
-    "category": "핀테크/금융",
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://www.wooribank.com",
     "domain": "wooribank.com",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "김준일",
     "company": "주한미국대사관",
     "role": "공공외교 보좌관 (AI·신흥기술)",
-    "category": "공공/정치",
-    "categories": [
-      "공공/정치",
-      "AI/머신러닝"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "김지연",
     "company": "삼성전자",
     "role": "AI Engineer",
-    "category": "AI/머신러닝",
-    "categories": [
-      "AI/머신러닝",
-      "대기업/엔터프라이즈"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "박인태",
     "company": "KB국민은행",
     "role": "디지털콘텐츠센터 콘텐츠 전략",
-    "category": "핀테크/금융",
-    "categories": [
-      "핀테크/금융",
-      "콘텐츠·크리에이터"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://www.kbstar.com",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "김지현",
     "company": "더핑크퐁컴퍼니",
     "role": "글로벌콘텐츠 마케팅부 소셜미디어 파트장",
-    "category": "콘텐츠·크리에이터",
-    "categories": [
-      "콘텐츠·크리에이터",
-      "마케팅·브랜딩"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://www.pinkfong.com",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "박윤호",
     "company": "실리콘투",
     "role": "BM 본부 ESM팀 팀장",
-    "category": "커머스/유통",
-    "categories": [
-      "커머스/유통",
-      "글로벌 진출"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://silicon2.com",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "이주호",
     "company": "인블로그",
     "role": "팀원",
-    "category": "AI/머신러닝",
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://neopress.ai",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "강건욱",
     "company": "서울대 창업지원단",
     "role": "단장",
-    "category": "연구/대학원",
-    "categories": [
-      "연구/대학원",
-      "공공/정치"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://startup.snu.ac.kr",
     "domain": "startup.snu.ac.kr",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "인홍돈",
     "company": "서울대 창업지원단",
     "role": "글로벌 창업혁신 전문위원",
-    "category": "연구/대학원",
-    "categories": [
-      "연구/대학원",
-      "글로벌 진출"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://startup.snu.ac.kr",
     "domain": "startup.snu.ac.kr",
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "목승환",
     "company": "중소벤처기업부",
     "role": "벤처창업혁신실 실장",
-    "category": "공공/정치",
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "김주한",
     "company": "서울대 산학협력단",
     "role": "단장",
-    "category": "연구/대학원",
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "https://snufoundation.snu.ac.kr",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "박소정",
     "company": "서울대 벤처경영기업가센터",
     "role": "부센터장",
-    "category": "연구/대학원",
-    "categories": [
-      "연구/대학원",
-      "교육/에듀테크"
-    ],
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   },
   {
     "guest": true,
     "name": "오형욱",
     "company": "TEDO",
     "role": "기획팀장",
-    "category": "이외",
+    "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
     "homepage": "",
     "domain": null,
-    "cohort": "—"
+    "cohort": ""
   }
 ];
 
 const CATEGORY_ORDER = [
   '후원사',
+  '초청 내빈',
   'AI/머신러닝',
   '딥테크/하드웨어',
   'SaaS/생산성',
