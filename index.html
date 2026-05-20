@@ -673,6 +673,20 @@ header {
 .member-link:hover {
   opacity: 0.6;
 }
+.member-contact {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  cursor: default;
+  user-select: text;
+  white-space: nowrap;
+}
+.modal-contact {
+  border-bottom: none !important;
+  cursor: default !important;
+  text-transform: none !important;
+}
 .member-link.muted {
   color: var(--ink-soft);
   border-color: var(--line);
@@ -5936,6 +5950,22 @@ const MEMBERS = [
     "categories": [
       "초청 내빈"
     ]
+  },
+  {
+    "guest": true,
+    "name": "이승국",
+    "company": "매쉬업벤처스",
+    "role": "파트너",
+    "category": "초청 내빈",
+    "categories": [
+      "초청 내빈",
+      "VC/투자"
+    ],
+    "intro": "",
+    "linkedin": "",
+    "homepage": "https://www.mashupventures.co",
+    "domain": "mashupventures.co",
+    "cohort": ""
   }
 ];
 
@@ -6071,8 +6101,8 @@ function memberCard(m, idx, displayCat) {
       ${homepageUrl
         ? `<a class="member-link" href="${homepageUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Site ↗</a>`
         : ``}
-      ${m.email ? `<a class="member-link" href="mailto:${m.email}" onclick="event.stopPropagation()">Email ↗</a>` : ''}
-      ${m.phone ? `<a class="member-link" href="tel:${m.phone.replace(/[^0-9+]/g,'')}" onclick="event.stopPropagation()">Phone ↗</a>` : ''}
+      ${m.email ? `<span class="member-contact" onclick="event.stopPropagation()">${escapeHtml(m.email)}</span>` : ''}
+      ${m.phone ? `<span class="member-contact" onclick="event.stopPropagation()">${escapeHtml(m.phone)}</span>` : ''}
       ${saveBtnHtml}
     </div>
   `;
@@ -6267,8 +6297,8 @@ function openModal(idx, pushHistory = true) {
         <div class="modal-links">
           ${linkedinUrl ? `<a class="modal-link" href="${linkedinUrl}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ''}
           ${homepageUrl ? `<a class="modal-link" href="${homepageUrl}" target="_blank" rel="noopener">Company Site ↗</a>` : ''}
-          ${m.email ? `<a class="modal-link" href="mailto:${m.email}">Email ↗</a>` : ''}
-          ${m.phone ? `<a class="modal-link" href="tel:${m.phone.replace(/[^0-9+]/g,'')}">Phone ↗</a>` : ''}
+          ${m.email ? `<span class="modal-link modal-contact">${escapeHtml(m.email)}</span>` : ''}
+          ${m.phone ? `<span class="modal-link modal-contact">${escapeHtml(m.phone)}</span>` : ''}
         </div>
       </div>` : ''}
     ${renderRecommendations(m)}
