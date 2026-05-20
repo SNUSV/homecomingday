@@ -264,9 +264,9 @@ header {
 .logo-marquee:nth-of-type(2) .logo-track { animation-direction: reverse; }
 .logo-track .logo-item {
   flex-shrink: 0;
-  width: 200px;
+  width: 180px;
   height: 72px;
-  padding: 0 24px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,22 +287,11 @@ header {
   display: block;
   object-fit: contain;
 }
-/* 정사각형/여백 많은 로고: 시각 크기 보정 (scale) */
+/* 정사각형 캔버스 안에 작게 들어간 로고 보정 */
 .logo-track img[src$="sellerlog.png"],
-.logo-track img[src$="elitejob.png"],
-.logo-track img[src$="flover.png"] {
-  transform: scale(1.9);
+.logo-track img[src$="elitejob.png"] {
+  transform: scale(1.5);
   transform-origin: center;
-}
-.logo-track img[src$="us-embassy.png"],
-.logo-track img[src$="snu-startup.png"] {
-  transform: scale(1.3);
-  transform-origin: center;
-}
-/* 와이드 비율인데 콘텐츠가 작은 로고 보정 */
-.logo-track img[src$="snu-techholdings.png"] {
-  max-width: none;
-  max-height: 64px;
 }
 @keyframes logo-scroll {
   from { transform: translateX(0); }
@@ -1390,6 +1379,7 @@ footer {
       <div class="logo-item is-linked" data-member-name="함승우" data-member-company="Galux"><img src="logos/galux.png" alt="Galux" /></div>
       <div class="logo-item is-linked" data-member-name="신승민" data-member-company="플로버 (Flover)"><img src="logos/flover.png" alt="Flover" /></div>
       <div class="logo-item is-linked" data-member-name="한서현" data-member-company="ABCDEdu"><img src="logos/ABCDEdue.webp" alt="ABCDedu" /></div>
+      <div class="logo-item is-linked" data-member-name="김권봉" data-member-company="모트모트"><img src="logos/motemote.webp" alt="모트모트" /></div>
       <div class="logo-item" aria-hidden="true"><img src="logos/sesaame.webp" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="logos/morning-punch.webp" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="logos/elitejob.png" alt="" /></div>
@@ -1403,6 +1393,7 @@ footer {
       <div class="logo-item" aria-hidden="true"><img src="logos/galux.png" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="logos/flover.png" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="logos/ABCDEdue.webp" alt="" /></div>
+      <div class="logo-item" aria-hidden="true"><img src="logos/motemote.webp" alt="" /></div>
     </div>
   </div>
 
@@ -5616,7 +5607,12 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": ""
+    "cohort": "",
+    "categories": [
+      "초청 내빈",
+      "VC/투자",
+      "대기업/엔터프라이즈"
+    ]
   },
   {
     "guest": true,
@@ -5628,7 +5624,12 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": ""
+    "cohort": "",
+    "categories": [
+      "초청 내빈",
+      "VC/투자",
+      "대기업/엔터프라이즈"
+    ]
   },
   {
     "guest": true,
@@ -5640,7 +5641,12 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": ""
+    "cohort": "",
+    "categories": [
+      "초청 내빈",
+      "VC/투자",
+      "대기업/엔터프라이즈"
+    ]
   },
   {
     "guest": true,
@@ -5652,7 +5658,11 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://aws.amazon.com",
     "domain": "aws.amazon.com",
-    "cohort": ""
+    "cohort": "",
+    "categories": [
+      "초청 내빈",
+      "대기업/엔터프라이즈"
+    ]
   },
   {
     "guest": true,
@@ -5664,7 +5674,13 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.wooribank.com",
     "domain": "wooribank.com",
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-3005-6443",
+    "email": "adb@wooribank.com",
+    "categories": [
+      "초청 내빈",
+      "핀테크/금융"
+    ]
   },
   {
     "guest": true,
@@ -5674,9 +5690,16 @@ const MEMBERS = [
     "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
-    "homepage": "",
-    "domain": null,
-    "cohort": ""
+    "homepage": "https://kr.usembassy.gov",
+    "domain": "kr.usembassy.gov",
+    "cohort": "",
+    "phone": "010-7295-5506",
+    "email": "Kimji@state.gov",
+    "categories": [
+      "초청 내빈",
+      "공공/정치",
+      "AI/머신러닝"
+    ]
   },
   {
     "guest": true,
@@ -5686,9 +5709,16 @@ const MEMBERS = [
     "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
-    "homepage": "",
-    "domain": null,
-    "cohort": ""
+    "homepage": "https://www.samsung.com/sec/",
+    "domain": "www.samsung.com",
+    "cohort": "",
+    "phone": "010-9424-1358",
+    "email": "Sarakjykjy@gmail.com",
+    "categories": [
+      "초청 내빈",
+      "AI/머신러닝",
+      "대기업/엔터프라이즈"
+    ]
   },
   {
     "guest": true,
@@ -5700,7 +5730,14 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.kbstar.com",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-9246-0268",
+    "email": "Simon.intae.park@gmail.com",
+    "categories": [
+      "초청 내빈",
+      "핀테크/금융",
+      "커뮤니티/미디어"
+    ]
   },
   {
     "guest": true,
@@ -5712,7 +5749,14 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://www.pinkfong.com",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-5825-7374",
+    "email": "Gustavc1014@gmail.com",
+    "categories": [
+      "초청 내빈",
+      "커뮤니티/미디어",
+      "마케팅/브랜딩"
+    ]
   },
   {
     "guest": true,
@@ -5724,7 +5768,13 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://silicon2.com",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-6221-8207",
+    "email": "Pyhcom8521@naver.com",
+    "categories": [
+      "초청 내빈",
+      "커머스/유통"
+    ]
   },
   {
     "guest": true,
@@ -5736,7 +5786,13 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://neopress.ai",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-9166-9723",
+    "email": "Dlwngh2113@snu.ac.kr",
+    "categories": [
+      "초청 내빈",
+      "AI/머신러닝"
+    ]
   },
   {
     "guest": true,
@@ -5748,7 +5804,14 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://startup.snu.ac.kr",
     "domain": "startup.snu.ac.kr",
-    "cohort": ""
+    "cohort": "",
+    "phone": "010-9096-1927",
+    "email": "kangkw@snu.ac.kr",
+    "categories": [
+      "초청 내빈",
+      "연구/대학원",
+      "공공/정치"
+    ]
   },
   {
     "guest": true,
@@ -5760,7 +5823,11 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://startup.snu.ac.kr",
     "domain": "startup.snu.ac.kr",
-    "cohort": ""
+    "cohort": "",
+    "categories": [
+      "초청 내빈",
+      "연구/대학원"
+    ]
   },
   {
     "guest": true,
@@ -5770,9 +5837,14 @@ const MEMBERS = [
     "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
-    "homepage": "",
-    "domain": null,
-    "cohort": ""
+    "homepage": "https://www.mss.go.kr",
+    "domain": "www.mss.go.kr",
+    "cohort": "",
+    "phone": "010-4112-2213",
+    "categories": [
+      "초청 내빈",
+      "공공/정치"
+    ]
   },
   {
     "guest": true,
@@ -5784,7 +5856,12 @@ const MEMBERS = [
     "linkedin": "",
     "homepage": "https://snufoundation.snu.ac.kr",
     "domain": null,
-    "cohort": ""
+    "cohort": "",
+    "email": "juhan@snu.ac.kr",
+    "categories": [
+      "초청 내빈",
+      "연구/대학원"
+    ]
   },
   {
     "guest": true,
@@ -5794,9 +5871,15 @@ const MEMBERS = [
     "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
-    "homepage": "",
-    "domain": null,
-    "cohort": ""
+    "homepage": "https://bizcenter.snu.ac.kr",
+    "domain": "bizcenter.snu.ac.kr",
+    "cohort": "",
+    "email": "sojungpark@snu.ac.kr",
+    "categories": [
+      "초청 내빈",
+      "연구/대학원",
+      "교육/에듀테크"
+    ]
   },
   {
     "guest": true,
@@ -5806,9 +5889,14 @@ const MEMBERS = [
     "category": "초청 내빈",
     "intro": "",
     "linkedin": "",
-    "homepage": "",
-    "domain": null,
-    "cohort": ""
+    "homepage": "https://tedo.kr",
+    "domain": "tedo.kr",
+    "cohort": "",
+    "phone": "010-8511-7510",
+    "email": "hyungwook23@gmail.com",
+    "categories": [
+      "초청 내빈"
+    ]
   }
 ];
 
@@ -5943,6 +6031,8 @@ function memberCard(m, idx, displayCat) {
       ${homepageUrl
         ? `<a class="member-link" href="${homepageUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Site ↗</a>`
         : ``}
+      ${m.email ? `<a class="member-link" href="mailto:${m.email}" onclick="event.stopPropagation()">Email ↗</a>` : ''}
+      ${m.phone ? `<a class="member-link" href="tel:${m.phone.replace(/[^0-9+]/g,'')}" onclick="event.stopPropagation()">Phone ↗</a>` : ''}
       ${saveBtnHtml}
     </div>
   `;
@@ -6123,12 +6213,14 @@ function openModal(idx, pushHistory = true) {
         <div class="modal-label">만나고 싶은 분</div>
         <div class="modal-body">${escapeHtml(m.wants)}</div>
       </div>` : ''}
-    ${(linkedinUrl || homepageUrl) ? `
+    ${(linkedinUrl || homepageUrl || m.email || m.phone) ? `
       <div class="modal-section">
         <div class="modal-label">Links</div>
         <div class="modal-links">
           ${linkedinUrl ? `<a class="modal-link" href="${linkedinUrl}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ''}
           ${homepageUrl ? `<a class="modal-link" href="${homepageUrl}" target="_blank" rel="noopener">Company Site ↗</a>` : ''}
+          ${m.email ? `<a class="modal-link" href="mailto:${m.email}">Email ↗</a>` : ''}
+          ${m.phone ? `<a class="modal-link" href="tel:${m.phone.replace(/[^0-9+]/g,'')}">Phone ↗</a>` : ''}
         </div>
       </div>` : ''}
     ${renderRecommendations(m)}
