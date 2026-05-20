@@ -442,17 +442,21 @@ header {
   gap: 8px;
 }
 .filter-chip {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  padding: 8px 14px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 10px 18px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--bg-card);
   color: var(--ink);
   cursor: pointer;
   transition: all 0.15s;
-  text-transform: uppercase;
+}
+.filter-chip .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
 }
 .filter-chip:hover {
   border-color: var(--ink-soft);
@@ -5855,10 +5859,27 @@ function getCategoryCounts() {
   return counts;
 }
 
+// Persisted filter order — shuffled once per page load, kept stable across re-renders
+const FIXED_FILTER_HEAD = ['후원사', '초청 내빈'];
+let _filterOrder = null;
+function buildFilterOrder(counts) {
+  if (_filterOrder) return _filterOrder;
+  const all = CATEGORY_ORDER.filter(c => counts[c]);
+  const fixed = FIXED_FILTER_HEAD.filter(c => all.includes(c));
+  const rest = all.filter(c => !fixed.includes(c));
+  // Fisher-Yates shuffle
+  for (let i = rest.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [rest[i], rest[j]] = [rest[j], rest[i]];
+  }
+  _filterOrder = [...fixed, ...rest];
+  return _filterOrder;
+}
+
 function renderFilters() {
   const counts = getCategoryCounts();
   const total = MEMBERS.length;
-  const cats = CATEGORY_ORDER.filter(c => counts[c]);
+  const cats = buildFilterOrder(counts);
   const container = document.getElementById('filters');
   container.innerHTML = '';
 
