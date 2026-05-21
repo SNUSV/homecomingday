@@ -1562,7 +1562,14 @@ const MEMBERS = [
     "intro": "SNUSV 학부 출신과 다양한 분야 전문가로 구성된 엔젤투자 클럽. 후배 창업가의 성장을 위해 투자·멘토링·네트워킹을 지원합니다.",
     "linkedin": "",
     "homepage": "http://snusvangelclub.com/",
-    "domain": "snusvangelclub.com"
+    "domain": "snusvangelclub.com",
+    "linkedGuests": [
+      "조세원",
+      "이상욱",
+      "조민희",
+      "목승환",
+      "이상제"
+    ]
   },
   {
     "name": "엘리트잡",
@@ -6558,8 +6565,13 @@ function render() {
     return;
   }
 
-  // Sort comparator: sponsor first, then preserve existing order
-  const sponsorFirst = (a, b) => {
+  // Sort comparator: AngelClub first in 후원사, then sponsor first, then preserve order
+  const sortForCategory = (cat) => (a, b) => {
+    if (cat === '후원사') {
+      const aa = a.name === 'SNUSV AngelClub' ? 0 : 1;
+      const bb = b.name === 'SNUSV AngelClub' ? 0 : 1;
+      if (aa !== bb) return aa - bb;
+    }
     const sa = a.sponsor ? 0 : 1;
     const sb = b.sponsor ? 0 : 1;
     return sa - sb;
@@ -6569,7 +6581,7 @@ function render() {
     // Render a section per selected category, containing matching members
     for (const cat of CATEGORY_ORDER) {
       if (!activeCategories.has(cat)) continue;
-      const inCat = filtered.filter(m => memberCats(m).includes(cat)).slice().sort(sponsorFirst);
+      const inCat = filtered.filter(m => memberCats(m).includes(cat)).slice().sort(sortForCategory(cat));
       if (!inCat.length) continue;
       const section = document.createElement('div');
       section.className = 'category-section';
@@ -6597,7 +6609,7 @@ function render() {
     });
     for (const cat of CATEGORY_ORDER) {
       if (!grouped[cat]) continue;
-      grouped[cat].sort(sponsorFirst);
+      grouped[cat].sort(sortForCategory(cat));
       const section = document.createElement('div');
       section.className = 'category-section';
       section.innerHTML = `
@@ -6685,7 +6697,7 @@ function openModal(idx, pushHistory = true) {
 
   const guestSection = (m.linkedGuests && m.linkedGuests.length)
     ? `<div class="modal-section">
-        <div class="modal-label">함께 오시는 초청 내빈</div>
+        <div class="modal-label">함께 오시는 분들</div>
         <div class="modal-guest-list">${m.linkedGuests.map(g => `<button type="button" class="modal-guest-chip" onclick="openMemberByName('${g}')">${escapeHtml(g)} →</button>`).join('')}</div>
       </div>`
     : '';
