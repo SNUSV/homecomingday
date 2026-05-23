@@ -1294,6 +1294,78 @@ footer {
   20%, 60% { transform: translateX(-10px); }
   40%, 80% { transform: translateX(10px); }
 }
+
+/* ── EVENT END NOTICE POPUP ───────────────── */
+.event-notice-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(10, 10, 30, 0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: notice-fade 0.25s ease;
+}
+.event-notice-backdrop.open { display: flex; }
+.event-notice {
+  background: var(--bg-card);
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(10, 28, 196, 0.25);
+  text-align: center;
+  animation: notice-rise 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.event-notice-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+.event-notice-title {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.event-notice-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+  white-space: pre-line;
+}
+.event-notice-close {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.event-notice-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+@keyframes notice-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes notice-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 <script>
   // Hide content until auth check completes (prevents flash)
@@ -6934,6 +7006,50 @@ window.addEventListener('DOMContentLoaded', () => {
   <span class="copy-hint">Copy</span>
 </button>
 <div class="save-toast" id="save-toast" role="status" aria-live="polite"></div>
+
+<div class="event-notice-backdrop" id="event-notice" role="dialog" aria-modal="true" aria-labelledby="event-notice-title">
+  <div class="event-notice">
+    <div class="event-notice-tag">SNUSV 30TH — HOMECOMING</div>
+    <h2 class="event-notice-title" id="event-notice-title">행사가 무사히 마무리되었습니다 🎉</h2>
+    <p class="event-notice-body">5월 22일 SNUSV 30주년 홈커밍 데이에 함께해 주신 모든 분들께 감사드립니다.
+이 페이지는 행사 이후에도 동문 디렉토리로 계속 활용해 주세요 — 카드 검색, 카테고리 필터, 스크랩, 추천 만남 기능 모두 그대로 동작합니다.</p>
+    <button type="button" class="event-notice-close" id="event-notice-close">확인</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const NKEY = 'snusv30_event_notice_dismissed';
+  const AKEY = 'snusv30_auth';
+  const backdrop = document.getElementById('event-notice');
+  const closeBtn = document.getElementById('event-notice-close');
+  function show() {
+    if (sessionStorage.getItem(NKEY)) return;
+    backdrop.classList.add('open');
+  }
+  function hide() {
+    backdrop.classList.remove('open');
+    sessionStorage.setItem(NKEY, '1');
+  }
+  closeBtn.addEventListener('click', hide);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) hide(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && backdrop.classList.contains('open')) hide(); });
+  function maybeShow() {
+    if (sessionStorage.getItem(AKEY) === '1') show();
+  }
+  // Show after auth — poll briefly until authenticated, then show once
+  maybeShow();
+  let tries = 0;
+  const t = setInterval(() => {
+    if (sessionStorage.getItem(AKEY) === '1') {
+      clearInterval(t);
+      show();
+    } else if (++tries > 600) {
+      clearInterval(t);
+    }
+  }, 500);
+})();
+</script>
 
 </body>
 </html>
