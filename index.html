@@ -1405,22 +1405,24 @@ footer {
   }
 
   async function recordViewCount() {
-    const VKEY = 'snusv30_view_counted';
     const el = document.getElementById('view-counter');
     if (!el) return;
-    const counted = sessionStorage.getItem(VKEY) === '1';
-    const url = counted
-      ? 'https://api.counterapi.dev/v1/snusv/homecoming30'
-      : 'https://api.counterapi.dev/v1/snusv/homecoming30/up';
+    // Always increment on every load (no session dedup)
     try {
-      const r = await fetch(url);
+      const r = await fetch('https://api.counterapi.dev/v1/snusv/homecoming30/up/', {
+        cache: 'no-store',
+      });
       const d = await r.json();
       if (typeof d.count === 'number') {
         el.textContent = 'view: ' + d.count.toLocaleString();
-        sessionStorage.setItem(VKEY, '1');
       }
     } catch (_) {
-      // silent fail — keep placeholder
+      // Fallback: try read-only endpoint
+      try {
+        const r = await fetch('https://api.counterapi.dev/v1/snusv/homecoming30/', { cache: 'no-store' });
+        const d = await r.json();
+        if (typeof d.count === 'number') el.textContent = 'view: ' + d.count.toLocaleString();
+      } catch (_) {}
     }
   }
 
